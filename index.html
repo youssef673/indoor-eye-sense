@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="INDOOR EYE SENSE: progetto di tecnologia indossabile per supportare l'orientamento e la percezione degli ostacoli attraverso sensori, feedback aptico e mappatura 3D.">
+  <title>INDOOR EYE SENSE — Percepire lo spazio, oltre la vista</title>
+  <style>
+    :root{--bg:#07111f;--panel:#0d1b2d;--panel2:#10243a;--text:#edf5ff;--muted:#a8b9cc;--cyan:#55d6e8;--blue:#6b8cff;--line:rgba(181,211,239,.15);--max:1160px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}a{color:inherit;text-decoration:none}button,a{ -webkit-tap-highlight-color:transparent}.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
+    .nav{position:sticky;top:0;z-index:20;background:rgba(7,17,31,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.navin{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:.11em}.mark{width:34px;height:34px;border:1px solid rgba(85,214,232,.6);border-radius:11px;display:grid;place-items:center;color:var(--cyan);font-size:18px}.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:.24em;font-weight:700}.links{display:flex;gap:25px;color:#c2d0df;font-size:13px}.links a:hover{color:var(--cyan)}.menu{display:none;background:none;border:1px solid var(--line);color:white;border-radius:9px;padding:8px 11px}
+    .hero{position:relative;overflow:hidden;padding:105px 0 88px;background:radial-gradient(ellipse at 78% 30%,rgba(52,125,190,.22),transparent 42%),radial-gradient(ellipse at 15% 90%,rgba(36,191,208,.12),transparent 40%)}.hero:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(130,180,220,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(130,180,220,.12) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(to bottom,black,transparent 90%)}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:55px}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}.dot{width:7px;height:7px;background:var(--cyan);border-radius:50%;box-shadow:0 0 14px var(--cyan)}h1{font-size:clamp(43px,6.2vw,76px);line-height:1.02;letter-spacing:-.055em;margin:22px 0}.gradient{background:linear-gradient(100deg,#fff 15%,#8de9f0 60%,#82a8ff);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{max-width:610px;color:#b8c8d9;font-size:18px}.actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 19px;border-radius:11px;font-weight:750;font-size:13px;border:1px solid var(--line);transition:.2s}.primary{background:linear-gradient(110deg,#46cbdc,#6b8cff);color:#061321;border:0}.btn:hover{transform:translateY(-2px)}.secondary:hover{border-color:var(--cyan);color:var(--cyan)}
+    .visual{min-height:370px;position:relative;display:grid;place-items:center}.orb{width:min(340px,78vw);aspect-ratio:1;border-radius:50%;border:1px solid rgba(85,214,232,.35);background:radial-gradient(circle at 50% 50%,rgba(69,199,221,.17),rgba(30,80,124,.08) 48%,transparent 69%);box-shadow:0 0 90px rgba(57,176,211,.12),inset 0 0 60px rgba(89,184,225,.08);position:relative;display:grid;place-items:center}.orb:before,.orb:after{content:"";position:absolute;border:1px solid rgba(108,160,235,.35);border-radius:50%;inset:13%;transform:rotateX(67deg) rotateZ(25deg)}.orb:after{inset:2%;transform:rotateY(68deg) rotateZ(-25deg);border-color:rgba(85,214,232,.24)}.device{width:145px;height:190px;border:1px solid rgba(132,218,240,.6);border-radius:28px;background:linear-gradient(145deg,#18344c,#081521);box-shadow:0 20px 70px rgba(0,0,0,.5),0 0 35px rgba(85,214,232,.18);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:17px;transform:rotate(-8deg)}.lens{width:46px;height:46px;border-radius:50%;border:3px solid #7ed9e8;background:radial-gradient(circle at 40% 35%,#a8f4ff,#286a91 35%,#07111f 70%);box-shadow:0 0 22px rgba(85,214,232,.55)}.device-line{width:62px;height:5px;border-radius:5px;background:#2f6880}.device-label{font-size:9px;letter-spacing:.2em;color:#b8eaf0}.float{position:absolute;padding:9px 13px;border:1px solid var(--line);background:rgba(9,25,42,.88);border-radius:10px;color:#d9f7fa;font-size:11px;box-shadow:0 10px 35px rgba(0,0,0,.2)}.f1{top:12%;right:0}.f2{bottom:15%;left:0}.f3{bottom:3%;right:8%}
+    section{padding:88px 0}.section-tag{color:var(--cyan);font-size:11px;letter-spacing:.2em;font-weight:850;text-transform:uppercase}.heading{font-size:clamp(30px,4vw,46px);line-height:1.1;letter-spacing:-.04em;margin:13px 0 15px}.sub{color:var(--muted);max-width:720px;font-size:16px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:35px}.card{background:linear-gradient(145deg,rgba(17,39,61,.95),rgba(10,25,42,.95));border:1px solid var(--line);border-radius:17px;padding:25px;min-height:220px}.icon{width:43px;height:43px;border-radius:12px;background:rgba(85,214,232,.1);border:1px solid rgba(85,214,232,.2);display:grid;place-items:center;color:var(--cyan);font-size:20px}.card h3{margin:19px 0 7px;font-size:18px}.card p{margin:0;color:var(--muted);font-size:14px}.darkband{background:#0a1727;border-block:1px solid var(--line)}.split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}.steps{display:grid;gap:13px;margin-top:25px}.step{display:flex;gap:15px;padding:16px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.02)}.num{flex:0 0 30px;height:30px;border-radius:9px;background:rgba(85,214,232,.12);color:var(--cyan);display:grid;place-items:center;font-weight:800;font-size:12px}.step b{display:block;font-size:14px}.step span{color:var(--muted);font-size:13px}.mapbox{border:1px solid rgba(85,214,232,.2);border-radius:18px;background:radial-gradient(circle at 50% 50%,rgba(47,125,164,.2),transparent 65%),#091727;min-height:340px;display:grid;place-items:center;position:relative;overflow:hidden}.mapgrid{width:82%;height:76%;border:1px solid rgba(85,214,232,.28);background-image:linear-gradient(rgba(85,214,232,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(85,214,232,.1) 1px,transparent 1px);background-size:28px 28px;transform:perspective(500px) rotateX(53deg) rotateZ(-15deg);position:relative}.mapgrid:before{content:"";position:absolute;inset:13% 12%;border:5px solid rgba(91,199,218,.65);box-shadow:0 0 22px rgba(85,214,232,.15)}.mapgrid:after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:#7ff1d2;box-shadow:0 0 20px #7ff1d2;left:48%;top:48%}.mapcaption{position:absolute;bottom:16px;left:18px;color:#9fb7ca;font-size:10px;letter-spacing:.12em}
+    .specs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:32px}.spec{padding:20px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.025)}.spec strong{display:block;color:var(--cyan);font-size:16px}.spec span{color:var(--muted);font-size:12px}.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:32px}.phase{border-top:2px solid var(--cyan);padding:17px 15px;background:rgba(255,255,255,.025);border-radius:0 0 12px 12px}.phase small{color:var(--cyan);font-weight:800;letter-spacing:.1em}.phase b{display:block;margin:8px 0}.phase p{margin:0;color:var(--muted);font-size:13px}.notice{border:1px solid rgba(255,193,102,.25);background:rgba(255,193,102,.06);padding:17px 19px;border-radius:12px;color:#e7d5b6;font-size:13px;margin-top:25px}.cta{border:1px solid rgba(85,214,232,.25);background:linear-gradient(110deg,rgba(29,105,130,.25),rgba(48,72,132,.2));border-radius:22px;padding:42px;display:flex;justify-content:space-between;align-items:center;gap:25px}.cta h2{font-size:30px;line-height:1.1;margin:0 0 8px}.cta p{margin:0;color:var(--muted)}footer{border-top:1px solid var(--line);padding:28px 0;color:#8297ac;font-size:12px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    @media(max-width:850px){.hero-grid,.split{grid-template-columns:1fr}.hero{padding:75px 0 55px}.visual{min-height:320px}.cards{grid-template-columns:1fr 1fr}.specs{grid-template-columns:1fr 1fr}.roadmap{grid-template-columns:1fr 1fr}.links{display:none}.links.open{display:flex;position:absolute;top:76px;left:0;right:0;padding:18px 22px;background:#091727;flex-direction:column;border-bottom:1px solid var(--line)}.menu{display:block}.cta{align-items:flex-start;flex-direction:column}}
+    @media(max-width:560px){.wrap{width:min(100% - 30px,var(--max))}section{padding:65px 0}.cards,.specs,.roadmap{grid-template-columns:1fr}.lead{font-size:16px}.cta{padding:27px}.float{font-size:9px}.f1{right:-5px}.f2{left:-5px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap navin">
+      <a class="brand" href="#home" aria-label="INDOOR EYE SENSE home"><span class="mark">◎</span><span>INDOOR EYE<small>SENSE PROJECT</small></span></a>
+      <nav class="links" id="navlinks" aria-label="Navigazione principale">
+        <a href="#mission">Missione</a><a href="#tecnologia">Tecnologia</a><a href="#mappa">Mappatura 3D</a><a href="#sviluppo">Sviluppo</a>
+      </nav>
+      <button class="menu" id="menu" aria-expanded="false" aria-controls="navlinks">Menu</button>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Tecnologia assistiva · Progetto P1</div>
+          <h1><span class="gradient">Percepire lo spazio.</span><br>Oltre la vista.</h1>
+          <p class="lead">INDOOR EYE SENSE è un progetto di dispositivo indossabile che unisce sensori di distanza, feedback aptico e mappatura tridimensionale per supportare la consapevolezza dello spazio circostante.</p>
+          <div class="actions"><a class="btn primary" href="#tecnologia">Scopri la tecnologia&nbsp; →</a><a class="btn secondary" href="#sviluppo">Il prototipo P1</a></div>
+        </div>
+        <div class="visual" aria-label="Illustrazione concettuale del dispositivo indossabile">
+          <div class="orb"><div class="device"><div class="lens"></div><div class="device-line"></div><div class="device-label">SENSE UNIT</div></div></div>
+          <div class="float f1">◉ Rilevamento ostacoli</div><div class="float f2">⌁ Feedback aptico</div><div class="float f3">▦ Mappa 3D</div>
+        </div>
+      </div>
+    </section>
+    <section id="mission">
+      <div class="wrap">
+        <div class="section-tag">01 — La missione</div>
+        <h2 class="heading">Più informazioni.<br><span class="gradient">Più consapevolezza dello spazio.</span></h2>
+        <p class="sub">L'obiettivo è esplorare un modo intuitivo per trasformare le informazioni raccolte dai sensori in indicazioni tattili e vocali. Il progetto è in fase di progettazione e prototipazione: le prestazioni dovranno essere dimostrate attraverso test controllati.</p>
+        <div class="cards">
+          <article class="card"><div class="icon">⌖</div><h3>Rilevamento</h3><p>Misurare distanze e individuare ostacoli nelle zone osservate dai sensori.</p></article>
+          <article class="card"><div class="icon">◖</div><h3>Feedback intuitivo</h3><p>Comunicare informazioni essenziali attraverso vibrazioni localizzate e messaggi vocali.</p></article>
+          <article class="card"><div class="icon">▦</div><h3>Comprensione 3D</h3><p>Costruire una rappresentazione spaziale semplificata dell'ambiente, senza archiviare le immagini.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="darkband" id="tecnologia">
+      <div class="wrap split">
+        <div>
+          <div class="section-tag">02 — Tecnologia</div>
+          <h2 class="heading">Sensori diversi.<br>Un'unica esperienza.</h2>
+          <p class="sub">Il prototipo combina tecnologie complementari. Ogni sensore contribuisce con informazioni differenti; il software le confronta e segnala anche quando un dato non è disponibile o è incerto.</p>
+          <div class="steps">
+            <div class="step"><div class="num">01</div><div><b>Ultrasuoni</b><span>Rilevamento della distanza da superfici e ostacoli riflettenti.</span></div></div>
+            <div class="step"><div class="num">02</div><div><b>Time-of-Flight multizona</b><span>Misure di profondità distribuite su più zone del campo visivo.</span></div></div>
+            <div class="step"><div class="num">03</div><div><b>Telecamera stereo e IMU</b><span>Informazioni di profondità e movimento per la mappatura spaziale.</span></div></div>
+            <div class="step"><div class="num">04</div><div><b>Elaborazione e feedback</b><span>Fusione dei dati, vibrazioni e indicazioni vocali.</span></div></div>
+          </div>
+        </div>
+        <div class="mapbox" aria-label="Illustrazione concettuale di una mappa spaziale tridimensionale"><div class="mapgrid"></div><div class="mapcaption">ILLUSTRAZIONE CONCETTUALE · OCCUPANCY GRID</div></div>
+      </div>
+    </section>
+    <section id="mappa">
+      <div class="wrap">
+        <div class="section-tag">03 — Mappatura spaziale</div>
+        <h2 class="heading">Una mappa, non un archivio di immagini.</h2>
+        <p class="sub">La scelta progettuale del P1 è elaborare localmente i dati necessari e conservare la rappresentazione geometrica dell'ambiente, non le immagini originali della telecamera. Anche le mappe saranno protette perché possono rivelare la disposizione degli spazi.</p>
+        <div class="specs">
+          <div class="spec"><strong>3D</strong><span>Rappresentazione spaziale</span></div>
+          <div class="spec"><strong>Locale</strong><span>Elaborazione sul dispositivo</span></div>
+          <div class="spec"><strong>No immagini</strong><span>Non archiviate nel progetto P1</span></div>
+          <div class="spec"><strong>In evoluzione</strong><span>Precisione da validare</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="darkband" id="sviluppo">
+      <div class="wrap">
+        <div class="section-tag">04 — Roadmap</div>
+        <h2 class="heading">Dal laboratorio al prototipo.</h2>
+        <p class="sub">Sviluppo graduale: prima si verificano i singoli sottosistemi, poi la loro integrazione. Le tappe sono indicative e potranno cambiare in base ai risultati dei test.</p>
+        <div class="roadmap">
+          <div class="phase"><small>FASE 01</small><b>Acquisizione</b><p>Collegamento e verifica dei sensori di distanza.</p></div>
+          <div class="phase"><small>FASE 02</small><b>Feedback</b><p>Prove controllate dei segnali tattili e vocali.</p></div>
+          <div class="phase"><small>FASE 03</small><b>Mappatura</b><p>Prima ricostruzione 3D di un ambiente di laboratorio.</p></div>
+          <div class="phase"><small>FASE 04</small><b>Validazione</b><p>Misure, test ripetuti e valutazione dell'accessibilità.</p></div>
+        </div>
+        <div class="notice"><b>Nota sulla sicurezza:</b> INDOOR EYE SENSE è un progetto in fase sperimentale. Non è un dispositivo medico o un sistema di sicurezza certificato e non sostituisce il bastone bianco, il cane guida o altri ausili per la mobilità. Le prove iniziali devono svolgersi in ambienti controllati e supervisionati.</div>
+      </div>
+    </section>
+    <section>
+      <div class="wrap">
+        <div class="cta"><div><h2>La tecnologia deve essere accessibile.</h2><p>INDOOR EYE SENSE — ricerca, prototipazione e innovazione per la percezione dello spazio.</p></div><a class="btn primary" href="https://github.com/youssef673/indoor-eye-sense" target="_blank" rel="noopener noreferrer">Segui il progetto su GitHub&nbsp; ↗</a></div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap foot"><span>© <span id="year"></span> INDOOR EYE SENSE · Project P1</span><span>Progetto in fase di ricerca e prototipazione</span></div></footer>
+  <script>
+    const menu=document.getElementById('menu'),links=document.getElementById('navlinks');
+    menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});
+    links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');}));
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
