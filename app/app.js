@@ -36,7 +36,6 @@
   const rangeValue = document.getElementById("intensity-value");
   if (range && rangeValue) range.addEventListener("input", () => { rangeValue.value = `${range.value} / 5`; rangeValue.textContent = `${range.value} / 5`; });
 
-  const preview = document.getElementById("preview-feedback");
   const previewButton = document.getElementById("preview-feedback");
   const previewPanel = document.getElementById("feedback-preview");
   if (previewButton && previewPanel) previewButton.addEventListener("click", () => {
