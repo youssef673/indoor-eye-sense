@@ -28,7 +28,7 @@ SENSE P1 è in fase di progettazione. I componenti citati sono candidati tecnici
 
 Il prototipo non è attualmente in vendita: non sono attivi ordini, pagamenti, preordini o spedizioni. La pagina prodotto comunica esplicitamente questo stato. Il flusso commerciale potrà essere attivato quando saranno definiti un prototipo funzionante, la validazione, il prezzo, il supporto e le condizioni di vendita.
 
-La companion web app è una demo front-end. Non si collega a hardware, non riceve misurazioni reali, non usa fotocamera o microfono e non salva le preferenze della sessione.
+La companion web app è una demo front-end. Include una scena 3D sintetica ruotabile e un assistente conversazionale locale basato su risposte preimpostate: non è collegato a un vero modello AI. Non si collega a hardware, non riceve misurazioni reali, non usa fotocamera o microfono e non salva le preferenze della sessione.
 
 ## Accessibilità e tecnologia
 
