@@ -1,44 +1,45 @@
 # INDOOR EYE SENSE
 
-Sito ufficiale del progetto INDOOR EYE SENSE, un concept di tecnologia assistiva indossabile attualmente in fase di ricerca e prototipazione.
+Sito pubblico del progetto INDOOR EYE SENSE: concept di tecnologia assistiva indossabile, scheda prodotto SENSE P1 e demo interattiva della companion web app.
 
-## Pubblicazione con GitHub Pages
+## Pubblicazione
 
 Il sito è statico e non richiede un processo di build.
 
-1. Apri **Settings → Pages** nel repository.
-2. In **Build and deployment**, scegli **Deploy from a branch**.
-3. Seleziona il branch **main** e la cartella **/(root)**.
-4. Premi **Save**.
-5. Attendi che GitHub completi la pubblicazione.
+GitHub Pages è configurato tramite GitHub Actions. In **Settings → Pages**, la sorgente di pubblicazione deve essere **GitHub Actions**. Il workflow `.github/workflows/pages.yml` pubblica automaticamente il contenuto del branch `main`.
 
-URL previsto: https://youssef673.github.io/indoor-eye-sense/
+URL: https://youssef673.github.io/indoor-eye-sense/
 
-## Struttura
+## Pagine
 
-- `index.html` — pagina principale.
+- `index.html` — home, visione INDOOR EYE, introduzione prodotto, tecnologia, piattaforma, roadmap e FAQ.
+- `product.html` — scheda SENSE P1, architettura candidata e disponibilità.
+- `app/index.html` — demo interattiva della companion web app.
 - `privacy.html` — impostazione di privacy e sicurezza del progetto.
-- `404.html` — pagina per indirizzi non trovati.
-- `assets/css/site.css` — stile responsive.
-- `assets/js/main.js` — menu mobile e piccole funzioni di interfaccia.
-- `assets/favicon.svg` — icona del sito.
-- `robots.txt` e `sitemap.xml` — indicazioni essenziali per i motori di ricerca.
+- `404.html` — pagina non trovata.
+- `assets/css/site.css` — stile pubblico responsive.
+- `assets/js/main.js` — navigazione pubblica.
+- `app/app.css`, `app/app.js` — interfaccia e interazioni della demo.
+- `assets/favicon.svg` — icona del progetto.
 
-## Caratteristiche
+## Stato reale del progetto
 
-- Layout responsive per smartphone, tablet e desktop.
-- Navigazione da tastiera, skip link, focus visibile e supporto a `prefers-reduced-motion`.
-- Nessuna libreria JavaScript o framework esterno.
-- Grafica concettuale realizzata in HTML/CSS/SVG.
-- Metadati SEO essenziali e pagina 404.
-- Nessun modulo di raccolta contatti o account utente.
+SENSE P1 è in fase di progettazione. I componenti citati sono candidati tecnici, non componenti dichiarati come già integrati o verificati. Non sono pubblicati dati non misurati su precisione, portata, autonomia, peso o prezzo.
 
-## Stato e accuratezza
+Il prototipo non è attualmente in vendita: non sono attivi ordini, pagamenti, preordini o spedizioni. La pagina prodotto comunica esplicitamente questo stato. Il flusso commerciale potrà essere attivato quando saranno definiti un prototipo funzionante, la validazione, il prezzo, il supporto e le condizioni di vendita.
 
-Il sito descrive un progetto in fase di progettazione. I sensori e l'architettura indicati sono candidati tecnici da verificare; non devono essere interpretati come componenti già integrati, testati o certificati. Le illustrazioni sono concettuali e non rappresentano fotografie di un dispositivo costruito.
+La companion web app è una demo front-end. Non si collega a hardware, non riceve misurazioni reali, non usa fotocamera o microfono e non salva le preferenze della sessione.
 
-La pagina Privacy & sicurezza descrive le intenzioni progettuali e non costituisce una dichiarazione di conformità legale o tecnica.
+## Accessibilità e tecnologia
 
-## Personalizzazione
+- HTML semantico, responsive layout, navigazione da tastiera e focus visibile.
+- Supporto a `prefers-reduced-motion`.
+- Nessuna libreria JavaScript o font esterno obbligatorio.
+- Grafica originale realizzata in HTML/CSS/SVG.
+- Nessun servizio di analisi o form di raccolta dati integrato nella demo.
 
-Prima di una presentazione pubblica definitiva, aggiungere solo informazioni di contatto reali e approvate dal titolare del progetto. Non pubblicare dati personali, luoghi di test o informazioni sensibili.
+## Verifiche prima della pubblicazione commerciale
+
+Prima di presentare il prototipo come prodotto acquistabile, completare test hardware, misure documentate, valutazioni di sicurezza, prove di usabilità accessibili, revisione privacy, definizione delle condizioni di vendita e attivazione di un canale di supporto reale.
+
+Le pagine descrivono le intenzioni di progetto e non costituiscono una dichiarazione di conformità tecnica, legale o normativa.
