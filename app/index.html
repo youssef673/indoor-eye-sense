@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101d29">
+  <meta name="description" content="Esplora la demo interattiva della companion web app INDOOR EYE SENSE. Nessun dispositivo reale collegato; tutti i dati sono simulati.">
+  <link rel="stylesheet" href="app.css">
+  <title>Companion App Demo — INDOOR EYE SENSE</title>
+</head>
+<body>
+  <a class="skip-link" href="#app-main">Salta al contenuto</a>
+  <div class="demo-banner"><span class="demo-pulse"></span><strong>AMBIENTE DEMO</strong><span>Questa interfaccia non è collegata a un dispositivo reale. I dati sono simulati.</span><a href="../">Torna al sito ↗</a></div>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navigazione della web app">
+      <a class="app-brand" href="../"><span class="app-brand__symbol">IE</span><span>INDOOR EYE<small>SENSE / COMPANION</small></span></a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="app-nav">
+        <button class="app-nav__item is-active" type="button" data-view-target="overview" aria-current="page"><span>◫</span>Panoramica</button>
+        <button class="app-nav__item" type="button" data-view-target="map"><span>⌗</span>Mappa spaziale</button>
+        <button class="app-nav__item" type="button" data-view-target="feedback"><span>◉</span>Feedback</button>
+        <button class="app-nav__item" type="button" data-view-target="device"><span>◎</span>Dispositivo</button>
+        <button class="app-nav__item" type="button" data-view-target="privacy"><span>◇</span>Privacy</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="connection-card"><span class="connection-dot"></span><div><b>Dispositivo non connesso</b><small>Modalità dimostrativa</small></div></div>
+        <a class="back-link" href="../">← Sito INDOOR EYE</a>
+      </div>
+    </aside>
+
+    <main class="app-main" id="app-main">
+      <header class="app-topbar">
+        <div><span class="breadcrumb">SENSE / COMPANION</span><span class="topbar-title">Area di lavoro</span></div>
+        <div class="topbar-actions"><span class="demo-chip">DEMO</span><span class="offline-chip"><i></i> Offline</span></div>
+      </header>
+
+      <section class="app-view is-visible" data-view="overview" aria-labelledby="overview-title">
+        <div class="view-heading"><div><p class="eyebrow">PANORAMICA / 01</p><h1 id="overview-title">Benvenuto in SENSE.</h1><p>Un'anteprima dell'esperienza digitale che affiancherà il dispositivo.</p></div><span class="view-date">PROTOTYPE INTERFACE</span></div>
+        <div class="notice"><span>i</span><p><b>Stai esplorando una simulazione.</b> Nessun sensore sta acquisendo dati e nessuna mappa mostrata rappresenta un luogo reale.</p></div>
+        <div class="metric-grid">
+          <article class="metric-card"><span>DISPOSITIVO</span><strong>Non connesso</strong><small><i class="metric-dot"></i> Connessione simulata assente</small></article>
+          <article class="metric-card"><span>MAPPA ATTIVA</span><strong>Demo 01</strong><small>Schema illustrativo</small></article>
+          <article class="metric-card"><span>FEEDBACK</span><strong>Anteprima</strong><small>Preferenze modificabili qui</small></article>
+        </div>
+        <div class="dashboard-grid">
+          <article class="panel map-panel"><div class="panel-heading"><div><span class="panel-kicker">SPATIAL OVERVIEW</span><h2>Mappa di esempio</h2></div><span class="panel-badge">SIMULATA</span></div>
+            <div class="floor-map" role="img" aria-label="Schema illustrativo di una stanza. Le pareti, i due oggetti e il punto centrale sono dati simulati."><div class="map-grid-lines"></div><div class="map-room"><span class="room-gap"></span><div class="map-object map-object--a">A</div><div class="map-object map-object--b">B</div><div class="map-user"><i></i><b>POSIZIONE DEMO</b></div><div class="map-range"></div></div><span class="map-axis map-axis--x">X</span><span class="map-axis map-axis--y">Y</span></div>
+            <div class="map-legend"><span><i class="legend-known"></i> Superficie di esempio</span><span><i class="legend-object"></i> Ingombro simulato</span><span><i class="legend-unknown"></i> Non osservato</span></div>
+            <p class="panel-footnote">Schema illustrativo senza valore operativo o metrico.</p>
+          </article>
+          <article class="panel summary-panel"><div class="panel-heading"><div><span class="panel-kicker">SYSTEM OVERVIEW</span><h2>Stato della demo</h2></div></div>
+            <div class="summary-row"><span>Acquisizione sensori</span><b>Disattivata</b></div><div class="summary-row"><span>Elaborazione spaziale</span><b>Simulata</b></div><div class="summary-row"><span>Feedback aptico</span><b>Anteprima</b></div><div class="summary-row"><span>Sincronizzazione cloud</span><b>Non attiva</b></div>
+            <button class="subtle-button" type="button" data-go-view="device">Dettagli dispositivo <span>↗</span></button>
+          </article>
+        </div>
+      </section>
+
+      <section class="app-view" data-view="map" aria-labelledby="map-title">
+        <div class="view-heading"><div><p class="eyebrow">SPATIAL DATA / 02</p><h1 id="map-title">Mappa spaziale.</h1><p>Un esempio di come potrebbe essere presentata una rappresentazione geometrica.</p></div><span class="view-date">MAP / DEMO-01</span></div>
+        <div class="notice"><span>i</span><p>Questa non è una scansione ambientale. Nessun ambiente è stato acquisito e la mappa non può essere usata per orientarsi.</p></div>
+        <article class="panel map-detail-panel"><div class="panel-heading"><div><span class="panel-kicker">CONCEPT VISUALIZATION</span><h2>Schema di un ambiente</h2></div><span class="panel-badge">NON REALE</span></div><div class="floor-map floor-map--large" role="img" aria-label="Mappa concettuale simulata, non corrisponde a un ambiente reale."><div class="map-grid-lines"></div><div class="map-room"><span class="room-gap"></span><div class="map-object map-object--a">A</div><div class="map-object map-object--b">B</div><div class="map-user"><i></i><b>POSIZIONE DEMO</b></div><div class="map-range"></div></div></div><div class="map-detail-legend"><div><i class="legend-known"></i><span><b>Superficie rilevata (demo)</b><small>Elemento grafico simulato</small></span></div><div><i class="legend-object"></i><span><b>Ingombro (demo)</b><small>Oggetto illustrativo</small></span></div><div><i class="legend-unknown"></i><span><b>Dato non disponibile</b><small>Non equivale a spazio libero</small></span></div></div></article>
+      </section>
+
+      <section class="app-view" data-view="feedback" aria-labelledby="feedback-title">
+        <div class="view-heading"><div><p class="eyebrow">PREFERENCES / 03</p><h1 id="feedback-title">Preferenze feedback.</h1><p>Controlli dimostrativi per esplorare una possibile esperienza di configurazione.</p></div><span class="view-date">LOCAL PREVIEW</span></div>
+        <div class="notice"><span>i</span><p>Le preferenze qui sotto cambiano solo questa schermata. Non controllano un dispositivo e non attivano vibrazioni o audio reali.</p></div>
+        <div class="settings-grid">
+          <article class="panel settings-panel"><div class="panel-heading"><div><span class="panel-kicker">OUTPUT CHANNELS</span><h2>Canali informativi</h2></div></div>
+            <div class="setting-row"><div><b>Feedback aptico</b><small>Anteprima visiva dei segnali</small></div><button class="switch is-on" type="button" role="switch" aria-checked="true" aria-label="Attiva anteprima aptica" data-setting="haptic"><span></span></button></div>
+            <div class="setting-row"><div><b>Indicazioni vocali</b><small>Preferenza illustrativa, audio non attivo</small></div><button class="switch is-on" type="button" role="switch" aria-checked="true" aria-label="Attiva indicazioni vocali nella demo" data-setting="voice"><span></span></button></div>
+            <div class="setting-row setting-row--stack"><div><b>Intensità preferita</b><small>Valore di esempio, non applicato a hardware</small></div><div class="range-wrap"><input id="intensity" type="range" min="1" max="5" value="3"><output for="intensity" id="intensity-value">3 / 5</output></div></div>
+            <div class="settings-actions"><button class="primary-button" id="preview-feedback" type="button">Mostra anteprima aptica</button><button class="subtle-button" id="reset-settings" type="button">Ripristina demo</button></div>
+            <div class="preview-feedback" id="feedback-preview" aria-live="polite"><span></span><b>Anteprima pronta</b><small>Premi il pulsante per visualizzare un esempio</small></div>
+          </article>
+          <aside class="panel note-panel"><span class="panel-kicker">DESIGN PRINCIPLE</span><h2>Informazioni selezionate, non rumore.</h2><p>La progettazione del feedback dovrà considerare comprensibilità, personalizzazione, tempi di risposta e carico cognitivo.</p><div class="note-panel__quote">“Ogni segnale deve avere un significato chiaro.”</div></aside>
+        </div>
+      </section>
+
+      <section class="app-view" data-view="device" aria-labelledby="device-title">
+        <div class="view-heading"><div><p class="eyebrow">HARDWARE / 04</p><h1 id="device-title">Dispositivo.</h1><p>Stato del collegamento e informazioni sul concept hardware.</p></div><span class="view-date">P1 / DEVELOPMENT</span></div>
+        <div class="device-state panel"><div class="device-state__icon">◎</div><div><span class="panel-kicker">CONNESSIONE</span><h2>Nessun dispositivo collegato</h2><p>La funzione di connessione hardware non è implementata in questa demo. SENSE P1 è ancora in fase di progettazione.</p><span class="offline-chip"><i></i> Offline</span></div></div>
+        <div class="device-info-grid"><article class="panel"><span class="panel-kicker">HARDWARE</span><h3>Componenti candidati</h3><p>Visione stereo, sensore ToF, ultrasuoni, unità di elaborazione e feedback aptico/audio sono ipotesi tecniche da verificare.</p></article><article class="panel"><span class="panel-kicker">NEXT STEP</span><h3>Integrazione da validare</h3><p>La connessione sarà progettata solo dopo aver definito hardware, protocolli, gestione degli errori e requisiti di sicurezza.</p></article></div>
+      </section>
+
+      <section class="app-view" data-view="privacy" aria-labelledby="privacy-title">
+        <div class="view-heading"><div><p class="eyebrow">CONTROL / 05</p><h1 id="privacy-title">Privacy e controllo.</h1><p>Una dimostrazione delle scelte che guideranno la piattaforma.</p></div><span class="view-date">PRIVACY BY DESIGN</span></div>
+        <div class="privacy-summary panel"><div class="privacy-summary__icon">◇</div><div><span class="panel-kicker">QUESTA DEMO</span><h2>Nessuna acquisizione. Nessun account.</h2><p>Questa web app è un'interfaccia dimostrativa statica. Non usa la fotocamera, non si collega a sensori, non crea account e non invia né salva le preferenze inserite durante la visita.</p></div></div>
+        <div class="privacy-cards"><article class="panel"><b>Minimizzazione</b><p>Un prodotto reale dovrà trattare solo i dati necessari alle funzioni effettivamente offerte.</p></article><article class="panel"><b>Trasparenza</b><p>Stato dei sensori, qualità dei dati e limiti della mappa dovranno essere comprensibili.</p></article><article class="panel"><b>Controllo</b><p>Eventuali mappe o informazioni salvate dovranno essere protette e gestibili dall'utente.</p></article></div>
+        <a class="inline-app-link" href="../privacy.html">Consulta la pagina privacy del progetto ↗</a>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="app-status" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
