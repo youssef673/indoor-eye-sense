@@ -63,4 +63,53 @@
     }
     toast("Le preferenze della demo sono state ripristinate.");
   });
-})();
+
+  // Interactive 3D room preview: synthetic demonstration geometry.
+  function initScene(canvas) {
+    const ctx=canvas.getContext("2d"); if(!ctx)return;
+    let yaw=-0.72,pitch=0.72,zoom=1,dragging=false,lastX=0,lastY=0;
+    const project=(p,w,h,dpr)=>{const x=p[0]*Math.cos(yaw)-p[1]*Math.sin(yaw);const y=p[0]*Math.sin(yaw)+p[1]*Math.cos(yaw);const yy=y*Math.cos(pitch)-p[2]*Math.sin(pitch);const z=y*Math.sin(pitch)+p[2]*Math.cos(pitch);const k=5/(7-z);const scale=Math.min(w,h)*.12*zoom;return [w*.5+x*scale*k,h*.57+yy*scale*k];};
+    function draw(){
+      const w=canvas.width,h=canvas.height,dpr=Math.min(window.devicePixelRatio||1,2);ctx.clearRect(0,0,w,h);
+      const line=(a,b,color,width)=>{const p=project(a,w,h,dpr),q=project(b,w,h,dpr);ctx.beginPath();ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.strokeStyle=color;ctx.lineWidth=(width||1)*dpr;ctx.stroke();};
+      const poly=(pts,fill,stroke)=>{ctx.beginPath();pts.forEach((v,i)=>{const p=project(v,w,h,dpr);i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]);});ctx.closePath();ctx.fillStyle=fill;ctx.fill();ctx.strokeStyle=stroke;ctx.lineWidth=1.2*dpr;ctx.stroke();};
+      for(let i=-4;i<=4;i++){line([i,-3,0],[i,3,0],"rgba(72,119,108,.19)");line([-4,i*.75,0],[4,i*.75,0],"rgba(72,119,108,.19)");}
+      poly([[-3,-2.2,0],[3,-2.2,0],[3,2.2,0],[-3,2.2,0]],"rgba(220,237,226,.3)","#8cae9c");
+      line([-3,-2.2,0],[-3,-2.2,2.3],"#6d9787",2);line([-3,-2.2,2.3],[3,-2.2,2.3],"#6d9787",2);line([3,-2.2,2.3],[3,-2.2,0],"#6d9787",2);
+      line([-3,-2.2,2.3],[-3,2.2,2.3],"rgba(109,151,135,.7)");line([3,-2.2,2.3],[3,2.2,2.3],"rgba(109,151,135,.7)");
+      function box(x,y,sx,sy,sz,label){
+        const a=[x-sx/2,y-sy/2,0],b=[x+sx/2,y-sy/2,0],c=[x+sx/2,y+sy/2,0],d=[x-sx/2,y+sy/2,0],A=[a[0],a[1],sz],B=[b[0],b[1],sz],C=[c[0],c[1],sz],D=[d[0],d[1],sz];
+        poly([a,b,B,A],"#b9d7c8","#729d8b");poly([b,c,C,B],"#9fc5b3","#729d8b");poly([d,a,A,D],"#d3e7da","#729d8b");poly([A,B,C,D],"#e0eee4","#729d8b");
+        const p=project([x,y,sz+.18],w,h,dpr);ctx.fillStyle="#426b5d";ctx.font=(9*dpr)+"px ui-monospace,monospace";ctx.textAlign="center";ctx.fillText(label,p[0],p[1]);
+      }
+      box(-1.55,-.75,1.05,.85,1.15,"OSTACOLO A");box(1.35,.45,.85,.75,.8,"OSTACOLO B");
+      const p=project([0,1.35,.1],w,h,dpr);ctx.beginPath();ctx.arc(p[0],p[1],5*dpr,0,Math.PI*2);ctx.fillStyle="#0d8071";ctx.fill();ctx.strokeStyle="#fff";ctx.lineWidth=2*dpr;ctx.stroke();ctx.fillStyle="#477266";ctx.font=(8*dpr)+"px ui-monospace,monospace";ctx.textAlign="center";ctx.fillText("POSIZIONE DEMO",p[0],p[1]+18*dpr);
+    }
+    const resize=()=>{const r=canvas.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.max(1,Math.round(r.width*d));canvas.height=Math.max(1,Math.round(r.height*d));draw();};
+    canvas.addEventListener("pointerdown",e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId);});
+    canvas.addEventListener("pointermove",e=>{if(!dragging)return;const dx=e.clientX-lastX,dy=e.clientY-lastY;lastX=e.clientX;lastY=e.clientY;yaw+=dx*.009;pitch=Math.max(.25,Math.min(1.2,pitch+dy*.006));draw();});
+    canvas.addEventListener("pointerup",()=>dragging=false);canvas.addEventListener("pointercancel",()=>dragging=false);
+    canvas.addEventListener("wheel",e=>{e.preventDefault();zoom=Math.max(.7,Math.min(1.5,zoom-e.deltaY*.001));draw();},{passive:false});
+    const reset=canvas.closest(".scene3d-wrap")?.querySelector("[data-scene-reset]");if(reset)reset.addEventListener("click",()=>{yaw=-.72;pitch=.72;zoom=1;draw();});
+    if("ResizeObserver" in window)new ResizeObserver(resize).observe(canvas);else window.addEventListener("resize",resize);resize();
+  }
+  document.querySelectorAll("[data-scene3d]").forEach(initScene);
+
+  // Local conversation preview; no connected language model or external API.
+  const aiPanel=document.getElementById("sense-ai-panel"),aiOpen=document.getElementById("sense-ai-open"),aiClose=document.getElementById("sense-ai-close");
+  const aiForm=document.getElementById("sense-ai-form"),aiInput=document.getElementById("sense-ai-input"),aiMessages=document.getElementById("sense-ai-messages");
+  function setAi(open){if(!aiPanel||!aiOpen)return;aiPanel.hidden=!open;aiOpen.setAttribute("aria-expanded",String(open));if(open)aiInput?.focus();}
+  aiOpen?.addEventListener("click",()=>setAi(aiPanel.hidden));aiClose?.addEventListener("click",()=>setAi(false));
+  function answerFor(q){
+    const s=q.toLowerCase();
+    if(/3d|mappa|modello|spazio/.test(s))return "La scena 3D è una visualizzazione dimostrativa costruita con geometria sintetica. Puoi ruotarla trascinando e usare la rotella per lo zoom. Non deriva da sensori reali.";
+    if(/bracciale|wearable|prodotto finale|finale/.test(s))return "Il prodotto finale immaginato è un bracciale indossabile compatto, affiancato dalla companion app. Il concept deve ancora essere sviluppato e verificato.";
+    if(/prototipo|primo prodotto|versione 1|p1/.test(s))return "Il primo prototipo mostrato è un'unità sperimentale da banco con due trasduttori ultrasonici, un indicatore luminoso e componenti di test. È una prova di concetto, non il bracciale finale.";
+    if(/sensori|ultrasuoni/.test(s))return "Gli ultrasuoni possono fornire misure di distanza da superfici che riflettono il segnale. Non riconoscono da soli gli oggetti né producono una comprensione semantica completa della scena.";
+    if(/acquisto|prezzo|vendita/.test(s))return "Il progetto non è ancora in vendita e non ha un prezzo definito. Prima serviranno un prototipo funzionante, verifiche, documentazione e un canale commerciale reale.";
+    if(/sicurezza|bastone|guida/.test(s))return "SENSE è un progetto sperimentale e non è un ausilio validato per la mobilità. Non sostituisce il bastone bianco, il cane guida o altre strategie di orientamento.";
+    return "Posso spiegarti il prototipo iniziale, il bracciale finale, i sensori, la scena 3D, la companion app e lo stato del progetto. Prova a chiedermi uno di questi argomenti.";
+  }
+  function addMessage(text,kind){const p=document.createElement("p");p.className="sense-ai-message "+(kind==="user"?"sense-ai-message--user":"sense-ai-message--bot");p.textContent=text;aiMessages.appendChild(p);aiMessages.scrollTop=aiMessages.scrollHeight;}
+  aiForm?.addEventListener("submit",e=>{e.preventDefault();const q=aiInput.value.trim();if(!q)return;addMessage(q,"user");aiInput.value="";window.setTimeout(()=>addMessage(answerFor(q),"bot"),180);});
+\n})();
