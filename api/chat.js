@@ -6,7 +6,7 @@ const allowedOrigins = new Set([
   "https://indoor-eye-sense-youssefelhachimi51-8502s-projects.vercel.app"
 ]);
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const origin = req.headers.origin || "";
   if (allowedOrigins.has(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
