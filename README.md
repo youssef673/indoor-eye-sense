@@ -34,6 +34,7 @@ La companion web app è una demo front-end. Non si collega a hardware, non ricev
 
 - HTML semantico, responsive layout, navigazione da tastiera e focus visibile.
 - Supporto a `prefers-reduced-motion`.
+- Accessibilità impostata come obiettivo di progetto con riferimento a WCAG 2.2; non è stata dichiarata né certificata una conformità completa.
 - Nessuna libreria JavaScript o font esterno obbligatorio.
 - Grafica originale realizzata in HTML/CSS/SVG.
 - Nessun servizio di analisi o form di raccolta dati integrato nella demo.
