@@ -5,7 +5,7 @@
   --bg:#07121d;--bg-soft:#0b1a26;--panel:#102432;--panel-light:#132c3a;
   --text:#f2f5ef;--muted:#aab8ba;--muted-2:#71858a;--line:rgba(203,226,220,.15);
   --mint:#bff28a;--cyan:#6cd9ca;--ink:#07121d;--warm:#e8eddf;
-  --mono:'DM Mono',ui-monospace,monospace;--sans:'DM Sans',system-ui,sans-serif;--display:'Manrope','DM Sans',sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;--sans:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--display:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   --max:1160px;--radius:18px;
 }
 *{box-sizing:border-box}
