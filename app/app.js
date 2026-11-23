@@ -95,21 +95,16 @@
   }
   document.querySelectorAll("[data-scene3d]").forEach(initScene);
 
-  // Local conversation preview; no connected language model or external API.
+  // Connected SENSE AI through the protected Vercel server endpoint.
   const aiPanel=document.getElementById("sense-ai-panel"),aiOpen=document.getElementById("sense-ai-open"),aiClose=document.getElementById("sense-ai-close");
   const aiForm=document.getElementById("sense-ai-form"),aiInput=document.getElementById("sense-ai-input"),aiMessages=document.getElementById("sense-ai-messages");
+  const aiHistory=[];
   function setAi(open){if(!aiPanel||!aiOpen)return;aiPanel.hidden=!open;aiOpen.setAttribute("aria-expanded",String(open));if(open)aiInput?.focus();}
   aiOpen?.addEventListener("click",()=>setAi(aiPanel.hidden));aiClose?.addEventListener("click",()=>setAi(false));
-  function answerFor(q){
-    const s=q.toLowerCase();
-    if(/3d|mappa|modello|spazio/.test(s))return "La scena 3D è una visualizzazione dimostrativa costruita con geometria sintetica. Puoi ruotarla trascinando e usare la rotella per lo zoom. Non deriva da sensori reali.";
-    if(/bracciale|wearable|prodotto finale|finale/.test(s))return "Il prodotto finale immaginato è un bracciale indossabile compatto, affiancato dalla companion app. Il concept deve ancora essere sviluppato e verificato.";
-    if(/prototipo|primo prodotto|versione 1|p1/.test(s))return "Il primo prototipo mostrato è un'unità sperimentale da banco con due trasduttori ultrasonici, un indicatore luminoso e componenti di test. È una prova di concetto, non il bracciale finale.";
-    if(/sensori|ultrasuoni/.test(s))return "Gli ultrasuoni possono fornire misure di distanza da superfici che riflettono il segnale. Non riconoscono da soli gli oggetti né producono una comprensione semantica completa della scena.";
-    if(/acquisto|prezzo|vendita/.test(s))return "Il progetto non è ancora in vendita e non ha un prezzo definito. Prima serviranno un prototipo funzionante, verifiche, documentazione e un canale commerciale reale.";
-    if(/sicurezza|bastone|guida/.test(s))return "SENSE è un progetto sperimentale e non è un ausilio validato per la mobilità. Non sostituisce il bastone bianco, il cane guida o altre strategie di orientamento.";
-    return "Posso spiegarti il prototipo iniziale, il bracciale finale, i sensori, la scena 3D, la companion app e lo stato del progetto. Prova a chiedermi uno di questi argomenti.";
-  }
-  function addMessage(text,kind){const p=document.createElement("p");p.className="sense-ai-message "+(kind==="user"?"sense-ai-message--user":"sense-ai-message--bot");p.textContent=text;aiMessages.appendChild(p);aiMessages.scrollTop=aiMessages.scrollHeight;}
-  aiForm?.addEventListener("submit",e=>{e.preventDefault();const q=aiInput.value.trim();if(!q)return;addMessage(q,"user");aiInput.value="";window.setTimeout(()=>addMessage(answerFor(q),"bot"),180);});
-\n})();
+  function addMessage(text,kind){const p=document.createElement("p");p.className="sense-ai-message "+(kind==="user"?"sense-ai-message--user":"sense-ai-message--bot");p.textContent=text;aiMessages.appendChild(p);aiMessages.scrollTop=aiMessages.scrollHeight;return p;}
+  aiForm?.addEventListener("submit",async e=>{e.preventDefault();const q=aiInput.value.trim();if(!q)return;addMessage(q,"user");aiInput.value="";const wait=addMessage("Sto preparando la risposta…","bot");const send=aiForm.querySelector('button[type="submit"]');if(send)send.disabled=true;
+    try{const r=await fetch("https://indoor-eye-sense-git-main-youssefelhachimi51-8502s-projects.vercel.app/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:[...aiHistory,{role:"user",content:q}]})});const data=await r.json();if(!r.ok)throw new Error(data.error||"Servizio AI temporaneamente non disponibile.");wait.textContent=data.answer;aiHistory.push({role:"user",content:q},{role:"assistant",content:data.answer});}
+    catch(err){wait.textContent=err.message||"Non riesco a raggiungere l'assistente. Riprova più tardi.";}
+    finally{if(send)send.disabled=false;aiInput.focus();}
+  });
+})();
