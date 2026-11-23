@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://youssef673.github.io/indoor-eye-sense/sitemap.xml
