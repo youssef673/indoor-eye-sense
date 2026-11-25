@@ -554,3 +554,31 @@ html,body{min-height:100%;background:#f5f7fa}
 .support-footer-card button{border:0;background:#0c9b8d;color:#fff;border-radius:9px;padding:11px 14px;font-size:10px;font-weight:750;white-space:nowrap;cursor:pointer}
 @media(max-width:900px){.navigation-grid{grid-template-columns:1fr}.history-summary-grid{grid-template-columns:1fr 1fr}.navigation-status-card{align-items:flex-start;flex-wrap:wrap}}
 @media(max-width:600px){.notification-panel{right:-54px}.history-summary-grid{grid-template-columns:1fr}.history-row{align-items:flex-start;flex-wrap:wrap}.history-row time{margin-left:21px}.support-footer-card{align-items:flex-start;flex-direction:column}.navigation-status-card{padding:15px}.navigation-status-card .offline-chip{margin-left:62px}}
+
+/* Notification center: compact, responsive and non-obstructive */
+.notification-wrap{position:static}
+.app-topbar{position:sticky;isolation:isolate}
+.notification-panel{position:fixed;top:88px;right:20px;width:318px;max-width:calc(100vw - 32px);max-height:min(430px,calc(100svh - 112px));overflow:auto;overscroll-behavior:contain;padding:13px;border-radius:17px;transform-origin:top right;animation:notificationIn .18s ease-out;box-shadow:0 16px 42px rgba(11,32,43,.16);z-index:20}
+.notification-panel[hidden]{display:none}
+.notification-panel-head{padding:2px 1px 10px}
+.notification-panel-head b{font-size:14px}
+.notification-item{gap:9px;padding:10px 1px}
+.notification-item p{font-size:9px}
+.notification-symbol{width:28px;height:28px;flex-basis:28px;border-radius:9px}
+.notification-read{padding:9px 11px;margin-top:9px}
+@keyframes notificationIn{from{opacity:0;transform:translateY(-7px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.topbar-icon-button[aria-expanded="true"]{background:#e8f7f3;color:#078f82}
+.topbar-icon-button[aria-expanded="true"] i{display:none}
+@media(min-width:1100px){
+  .app-main.notification-open .app-view.is-visible{max-width:calc(1440px - 330px);margin-left:auto;margin-right:330px}
+  .app-main.notification-open .app-topbar{padding-right:28px}
+  .notification-panel{right:20px;top:88px;width:300px}
+}
+@media(min-width:601px) and (max-width:1099px){
+  .notification-panel{right:14px;top:82px;width:300px;max-height: min(390px,calc(100svh - 100px))}
+}
+@media(max-width:600px){
+  .notification-panel{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));top:auto;width:auto;max-width:none;max-height:min(58svh,460px);border-radius:18px;transform-origin:bottom center;animation:notificationSheetIn .2s ease-out}
+  @keyframes notificationSheetIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+}
+@media(prefers-reduced-motion:reduce){.notification-panel{animation:none}}
