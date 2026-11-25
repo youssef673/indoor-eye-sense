@@ -22,6 +22,45 @@
     if (heading) heading.setAttribute("tabindex", "-1"), heading.focus({preventScroll:true});
   }
   navItems.forEach((item) => item.addEventListener("click", () => showView(item.dataset.viewTarget)));
+  // Local profile: no external account or cloud identity is implied.
+  const profileForm = document.getElementById("profile-form");
+  const profileNameInput = document.getElementById("profile-name-input");
+  const profileNameDisplay = document.getElementById("profile-display-name");
+  const profileAvatar = document.getElementById("profile-avatar");
+  const profileFeedback = document.getElementById("profile-save-feedback");
+  const profileDefaultName = "Youssef";
+  let profileName = profileDefaultName;
+  try { profileName = localStorage.getItem("ies-profile-name") || profileDefaultName; } catch (_) {}
+  function applyProfileName(value) {
+    const clean = (value || profileDefaultName).trim().slice(0, 40) || profileDefaultName;
+    profileName = clean;
+    const initial = clean.trim().charAt(0).toLocaleUpperCase("it-IT") || "Y";
+    if (profileNameDisplay) profileNameDisplay.textContent = clean;
+    if (profileAvatar) profileAvatar.textContent = initial;
+    document.querySelectorAll(".sidebar-account__avatar,.topbar-profile").forEach(el => el.textContent = initial);
+    const sideName = document.querySelector(".sidebar-account b");
+    if (sideName) sideName.textContent = clean;
+    const welcome = document.querySelector(".sense-welcome .topbar-title");
+    if (welcome) welcome.textContent = "Bentornato, " + clean;
+    if (profileNameInput) profileNameInput.value = clean;
+  }
+  applyProfileName(profileName);
+  profileForm?.addEventListener("submit", ev => {
+    ev.preventDefault();
+    const clean = profileNameInput?.value.trim().slice(0,40);
+    if (!clean) { if(profileFeedback) profileFeedback.textContent = "Inserisci un nome valido."; return; }
+    applyProfileName(clean);
+    try { localStorage.setItem("ies-profile-name", clean); } catch (_) {}
+    if(profileFeedback) profileFeedback.textContent = "Nome aggiornato su questo dispositivo.";
+    toast("Profilo aggiornato.");
+  });
+  document.getElementById("profile-reset")?.addEventListener("click", () => {
+    applyProfileName(profileDefaultName);
+    try { localStorage.removeItem("ies-profile-name"); } catch (_) {}
+    if(profileFeedback) profileFeedback.textContent = "Nome ripristinato.";
+    toast("Profilo ripristinato.");
+  });
+
   document.querySelectorAll("[data-go-view]").forEach((item) => item.addEventListener("click", () => showView(item.dataset.goView)));
 
   document.querySelectorAll("[data-setting]").forEach((toggle) => {
