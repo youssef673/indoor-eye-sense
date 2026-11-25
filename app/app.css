@@ -453,3 +453,57 @@ html,body{min-height:100%;background:#f5f7fa}
   .sense-scene-stage{height:72svh;min-height:270px}
   .sense-ai-panel{height:80svh;max-height:80svh}
 }
+
+/* Profile page refresh */
+.profile-heading{align-items:center}
+.profile-local-badge{display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid #cde9e2;border-radius:999px;background:#effaf6;color:#187a6e;font-size:10px;font-weight:750;white-space:nowrap}
+.profile-local-badge i{width:7px;height:7px;border-radius:50%;background:#17a88e;box-shadow:0 0 0 4px #d9f4eb}
+.profile-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,1fr);gap:16px;max-width:1120px}
+.profile-identity-card{padding:25px;background:linear-gradient(135deg,#fff 0%,#f1faf8 100%);border:1px solid #dcece8;box-shadow:0 8px 24px rgba(20,56,66,.045)}
+.profile-identity-top{display:flex;align-items:center;gap:18px}
+.profile-avatar-large{width:82px;height:82px;flex:0 0 82px;border-radius:24px;background:linear-gradient(145deg,#12bca5,#087c83);color:#fff;box-shadow:0 8px 20px #0b9d8b35;font-size:31px}
+.profile-identity-copy{min-width:0}
+.profile-identity-copy h2{margin:6px 0 5px;font-size:23px;letter-spacing:-.035em;color:#172b3c}
+.profile-identity-copy p{margin:0;color:#71818d;font-size:11px;line-height:1.5}
+.profile-identity-meta{display:flex;align-items:center;gap:11px;margin-top:25px;padding-top:17px;border-top:1px solid #dfebe8}
+.profile-meta-icon{width:35px;height:35px;display:grid;place-items:center;border-radius:11px;background:#e0f5f0;color:#078e82;font-size:22px}
+.profile-identity-meta>div{display:grid;gap:3px;flex:1}
+.profile-identity-meta b{font-size:11px;color:#203446}
+.profile-identity-meta small{font-size:9px;color:#84919b}
+.profile-status-pill{padding:5px 9px;border-radius:999px;background:#edf6f2;color:#388675;font-size:9px;font-weight:700}
+.profile-edit-card{padding:23px}
+.profile-section-heading{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.profile-section-heading h2{font-size:18px;margin:6px 0;color:#172b3c}
+.profile-section-heading p{font-size:11px;color:#788895;line-height:1.5;margin:0}
+.profile-heading-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:11px;background:#e8f7f3;color:#078e82;font-size:18px}
+.profile-form{display:grid;gap:9px;margin-top:20px}
+.profile-form label{font-size:11px;font-weight:750;color:#34495a}
+.profile-form input{width:100%;height:45px;border:1px solid #d9e3e7;border-radius:10px;padding:0 13px;background:#fbfdfd;color:#172b3c;font:inherit;font-size:14px;outline:none}
+.profile-form input:focus{border-color:#0b9f91;box-shadow:0 0 0 3px #0b9f911c}
+.profile-form>small{font-size:9px;color:#85939c;line-height:1.5}
+.profile-form-actions{display:flex;gap:9px;margin-top:7px}
+.profile-save-button,.profile-reset-button{min-height:40px;padding:0 15px;border-radius:9px;font-size:11px;font-weight:750;cursor:pointer}
+.profile-save-button{border:1px solid #078f83;background:#078f83;color:#fff}
+.profile-reset-button{border:1px solid #dce5e8;background:#fff;color:#526472}
+.profile-save-feedback{min-height:15px;margin:0;color:#078b7d;font-size:10px}
+.profile-link-card{display:flex;align-items:center;gap:13px;padding:17px 19px}
+.profile-link-icon{width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;border-radius:12px;background:#e7f6f2;color:#078f83;font-size:20px}
+.profile-link-card>div{flex:1;min-width:0}
+.profile-link-card h3{margin:0 0 4px;color:#203447;font-size:13px}
+.profile-link-card p{margin:0;color:#7b8994;font-size:10px;line-height:1.45}
+.profile-link-card>button{border:0;background:transparent;color:#078d82;font-size:10px;font-weight:800;cursor:pointer;white-space:nowrap}
+.profile-link-card>button span{font-size:14px;margin-left:3px}
+.profile-footnote{max-width:1120px;margin:14px 2px;color:#87949c;font-size:9px;line-height:1.6}
+@media(max-width:760px){
+ .profile-heading{align-items:flex-start}
+ .profile-local-badge{font-size:9px;padding:8px 10px}
+ .profile-layout{grid-template-columns:minmax(0,1fr);gap:11px}
+ .profile-identity-card,.profile-edit-card{padding:17px}
+ .profile-identity-top{gap:13px}
+ .profile-avatar-large{width:65px;height:65px;flex-basis:65px;border-radius:19px;font-size:25px}
+ .profile-identity-copy h2{font-size:19px}
+ .profile-identity-meta{margin-top:18px;padding-top:13px}
+ .profile-form-actions{display:grid;grid-template-columns:1fr 1fr}
+ .profile-save-button,.profile-reset-button{width:100%;min-height:43px}
+ .profile-link-card{padding:14px}
+}
