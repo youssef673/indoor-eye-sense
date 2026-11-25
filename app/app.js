@@ -78,7 +78,7 @@
     toast("Profilo ripristinato.");
   });
 
-  document.querySelectorAll("[data-go-view]").forEach((item) => item.addEventListener("click", () => showView(item.dataset.goView)));
+
 
   const settingsKey="ies-local-settings";
   function loadLocalSettings(){try{const saved=JSON.parse(localStorage.getItem(settingsKey)||"{}");document.querySelectorAll("[data-setting]").forEach(t=>{if(Object.prototype.hasOwnProperty.call(saved,t.dataset.setting)){const on=!!saved[t.dataset.setting];t.setAttribute("aria-checked",String(on));t.classList.toggle("is-on",on);}});}catch(_){}}
