@@ -343,3 +343,113 @@ html,body{min-height:100%;background:#f5f7fa}
 .sense-scene-stage:fullscreen{width:100vw;height:100vh;min-height:100vh;border-radius:0;background:#e9eeeb}
 .sense-scene-stage:fullscreen .scene3d{height:100vh}
 @media(max-width:760px){.sense-map-heading{margin-bottom:19px}.sense-bottom-grid{margin-top:17px}}
+
+
+/* MOBILE REFINEMENT — INDOOR EYE SENSE companion */
+@media (max-width:760px){
+  html{scroll-padding-top:12px}
+  body{font-size:14px;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom)}
+  .app-shell{display:flex;flex-direction:column;min-height:100svh;width:100%;overflow-x:clip}
+  .sidebar{position:sticky;top:0;z-index:30;width:100%;height:auto;min-height:0;padding:10px 12px 9px;overflow:visible;border-bottom:1px solid #24404c;box-shadow:0 5px 18px #071d2e16}
+  .sidebar:after{display:none}
+  .app-brand{width:max-content;max-width:100%;padding:0 3px 9px;gap:9px;font-size:10px}
+  .app-brand__symbol{width:32px;height:32px;flex:0 0 32px}
+  .app-brand small{font-size:7px}
+  .app-nav{display:flex;align-items:center;gap:5px;width:100%;margin:0;padding:0 1px 3px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+  .app-nav::-webkit-scrollbar{display:none}
+  .app-nav__item{display:flex;align-items:center;justify-content:center;gap:6px;flex:0 0 auto;min-height:40px;padding:8px 11px;border:1px solid transparent;border-radius:10px;white-space:nowrap;scroll-snap-align:start;font-size:11px}
+  .app-nav__item span{display:inline-block;width:auto;font-size:11px;line-height:1.2;color:inherit;text-align:left}
+  .app-nav__item.is-active{border-color:#34575a;background:#173b47;box-shadow:inset 0 -2px #5ce0c7}
+  .app-topbar{position:relative;top:auto;z-index:2;flex:0 0 auto;height:64px;min-height:64px;padding:0 15px;background:#fff}
+  .sense-avatar{width:35px;height:35px;flex:0 0 35px}
+  .sense-welcome{min-width:0;gap:9px}
+  .sense-welcome>div{min-width:0}
+  .sense-welcome .topbar-title{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sense-topbar-subtitle{font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .topbar-actions{gap:7px}
+  .topbar-icon-button{width:38px;height:38px}
+  .topbar-profile{width:35px;height:35px;flex:0 0 35px}
+  .app-view{width:100%;min-width:0;padding:21px 14px calc(112px + env(safe-area-inset-bottom));}
+  .app-view[data-view="map"]{padding:19px 13px calc(122px + env(safe-area-inset-bottom))}
+  .view-heading,.sense-map-heading{gap:10px;margin-bottom:16px}
+  .view-heading h1,.sense-map-heading h1{font-size:clamp(26px,7vw,32px);line-height:1.12}
+  .view-heading p,.sense-map-heading p{font-size:12px;line-height:1.55}
+  .sense-project-chip{width:100%;justify-content:center;padding:9px 11px;font-size:9px}
+  .sense-integrity-note{gap:9px;padding:11px;border-radius:11px;margin-bottom:13px}
+  .sense-integrity-note p{font-size:10px}
+  .sense-spatial-layout{display:flex;flex-direction:column;gap:13px}
+  .sense-scene-card{width:100%;min-width:0}
+  .sense-scene-stage{width:100%;height:clamp(330px,58svh,450px);min-height:330px;border-radius:13px}
+  .scene-toolbar--left{left:9px;top:9px;gap:6px}
+  .scene-toolbar button{width:37px;height:37px;border-radius:9px;font-size:22px}
+  .scene-toolbar button svg{width:18px;height:18px}
+  .scene-toolbar--topright{top:9px;right:9px}
+  .scene-toolbar--topright .scene-view-select{height:37px;gap:5px;padding:0 7px}
+  .scene-toolbar--topright .scene-view-select svg{width:17px;height:17px;flex-basis:17px}
+  .scene-toolbar select{height:34px;min-width:0;width:91px;padding:0 2px;font-size:10px}
+  .scene-bottom-bar{left:8px;right:8px;bottom:8px;gap:6px;align-items:flex-end}
+  .scene-view-tabs{max-width:100%;gap:1px;padding:3px;border-radius:10px}
+  .scene-view-tabs button{width:clamp(49px,15vw,65px);height:37px;padding:3px 2px;font-size:8px;white-space:nowrap}
+  .scene-measurement-label{display:none}
+  .sense-environment-card{width:100%;min-height:0;padding:16px;border-radius:14px}
+  .sense-environment-card .sense-card-heading{padding-bottom:11px}
+  .sense-environment-card .sense-card-heading h2{font-size:16px}
+  .sense-environment-row{grid-template-columns:42px minmax(0,1fr);gap:9px;padding:13px 0;min-height:0}
+  .sense-object-icon{width:40px;height:40px}
+  .sense-object-icon svg,.sense-route-icon svg{width:23px;height:23px}
+  .sense-environment-row strong{font-size:13px}
+  .sense-environment-row small{font-size:9px}
+  .sense-distance{grid-column:2;justify-self:start;margin-top:-4px;padding:4px 8px;font-size:9px}
+  .sense-route-status{grid-template-columns:42px minmax(0,1fr) 12px;gap:9px;padding:14px 0 12px}
+  .sense-route-icon{width:40px;height:40px}
+  .sense-route-status strong{font-size:12px}
+  .sense-route-status small{font-size:9px}
+  .sense-environment-foot{padding-top:10px}
+  .sense-bottom-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:11px;margin-top:13px}
+  .sense-bottom-card{min-height:0;padding:15px;border-radius:13px}
+  .sense-bottom-title{margin-bottom:10px}
+  .sense-bottom-title h2{font-size:14px}
+  .sense-device-content img{width:76px;height:70px}
+  .sense-ai{right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40}
+  .sense-ai-launch{gap:8px;padding:7px 12px 7px 7px}
+  .sense-ai-orb{width:32px;height:32px}
+  .sense-ai-panel{position:fixed;left:10px;right:10px;bottom:calc(62px + env(safe-area-inset-bottom));width:auto;height:min(68svh,560px);max-height:calc(100svh - 125px);border-radius:17px}
+  .sense-ai-panel>header{padding:13px}
+  .sense-ai-messages{padding:12px}
+  .sense-ai-message{font-size:12px}
+  #sense-ai-form{padding:10px}
+  #sense-ai-input{font-size:16px;min-height:42px}
+  #sense-ai-form button{width:44px;min-height:42px;flex:0 0 44px}
+  .device-gallery{padding:15px;margin:18px 0}
+  .device-gallery__grid{grid-template-columns:1fr}
+  .device-photo-card img{max-height:230px}
+  .dashboard-grid,.settings-grid{grid-template-columns:minmax(0,1fr)}
+  .metric-grid{grid-template-columns:1fr;gap:9px}
+  .metric-card{padding:13px 14px}
+  .metric-card strong{font-size:17px}
+  .panel{padding:15px}
+  .map-detail-legend,.privacy-cards,.device-info-grid{grid-template-columns:minmax(0,1fr)}
+  .summary-panel{display:block}
+  .summary-panel .subtle-button{width:100%}
+  .settings-actions{display:grid;grid-template-columns:1fr}
+  .settings-actions button{width:100%;min-height:42px}
+  .setting-row{gap:10px}
+  .setting-row small{max-width:245px}
+  .toast{left:12px;right:12px;bottom:calc(72px + env(safe-area-inset-bottom));max-width:none}
+}
+@media(max-width:390px){
+  .app-brand{padding-bottom:7px}
+  .app-nav__item{min-height:38px;padding:7px 9px}
+  .app-nav__item span{font-size:10px}
+  .sense-map-heading h1{font-size:27px}
+  .sense-scene-stage{height:350px;min-height:330px}
+  .scene-view-tabs button{width:clamp(45px,14vw,54px);font-size:7px}
+  .scene-toolbar button{width:34px;height:34px}
+  .scene-toolbar--topright .scene-view-select{max-width:118px}
+  .scene-toolbar select{width:78px;font-size:9px}
+}
+@media(orientation:landscape) and (max-height:520px) and (max-width:900px){
+  .sidebar{position:relative}
+  .sense-scene-stage{height:72svh;min-height:270px}
+  .sense-ai-panel{height:80svh;max-height:80svh}
+}
