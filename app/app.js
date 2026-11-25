@@ -154,15 +154,38 @@
     // Woven rug on tile floor.
     const rugTex=texture((g,w,h)=>{g.fillStyle="#bcb1a2";g.fillRect(0,0,w,h);for(let i=0;i<1800;i++){const x=(i*73)%w,y=(i*137)%h;g.fillStyle=i%2?"rgba(255,255,255,.1)":"rgba(91,77,63,.08)";g.fillRect(x,y,2,1);}g.strokeStyle="#d8cdbf";g.lineWidth=15;g.strokeRect(16,16,w-32,h-32);g.strokeStyle="#a89987";g.lineWidth=2;g.strokeRect(35,35,w-70,h-70);});const rug=new T.Mesh(new T.PlaneGeometry(4.35,3.25),new T.MeshStandardMaterial({map:rugTex,roughness:1,side:T.DoubleSide}));rug.rotation.x=-Math.PI/2;rug.position.set(-.05,.006,.25);rug.receiveShadow=true;scene.add(rug);softShadow(1.28,1.72,3.35,1.65);softShadow(-.05,.22,2.0,1.35);softShadow(-3.55,-.55,1.9,1.05);
     // Sofa: visible upholstered base, cushion, rounded armrests, pillows and feet.
-    rounded(1.28,.39,1.72,2.72,.42,1.08,sofa,.12);rounded(1.28,.93,2.2,2.62,.88,.28,sofa,.12);rounded(-.0,.68,1.78,.28,.66,1.12,sofa,.1);rounded(2.56,.68,1.78,.28,.66,1.12,sofa,.1);rounded(.68,.65,1.56,1.12,.18,.78,cushion,.08);rounded(1.88,.65,1.56,1.12,.18,.78,cushion,.08);rounded(.45,1.08,2.015,.78,.58,.18,cushion2,.08);rounded(1.28,1.1,2.015,.78,.58,.18,cushion,.08);rounded(2.1,1.08,2.015,.78,.58,.18,cushion2,.08);const sofaLeg=mat(0x5a5147,.6);for(const x of[.18,2.38])for(const z of[1.3,2.1])add(new T.CylinderGeometry(.045,.06,.22,12),sofaLeg,x,.12,z);
+    rounded(1.28,.39,1.72,2.72,.42,1.08,sofa,.12);rounded(1.28,.93,2.2,2.62,.88,.28,sofa,.12);rounded(-.0,.68,1.78,.28,.66,1.12,sofa,.1);rounded(2.56,.68,1.78,.28,.66,1.12,sofa,.1);rounded(.68,.65,1.56,1.12,.18,.78,cushion,.08);rounded(1.88,.65,1.56,1.12,.18,.78,cushion,.08);rounded(.45,1.08,2.015,.78,.58,.18,cushion2,.08);rounded(1.28,1.1,2.015,.78,.58,.18,cushion,.08);rounded(2.1,1.08,2.015,.78,.58,.18,cushion2,.08);
+    // Extra throw pillows and upholstery seams for a closer match to the reference sofa.
+    const throwA=rounded(.38,1.02,1.88,.42,.43,.19,cushion,.075);throwA.rotation.z=-.16;throwA.rotation.y=-.12;
+    const throwB=rounded(2.12,1.01,1.88,.42,.43,.19,cushion2,.075);throwB.rotation.z=.13;throwB.rotation.y=.1;
+    const seamMat=mat(0x8d8174,.98);
+    for(const x of[.68,1.88]){const seam=add(new T.TorusGeometry(.025,.008,6,18),seamMat,x,.75,1.18,false);seam.rotation.x=Math.PI/2;}
+    rounded(1.28,.83,1.48,2.12,.045,.035,cushion2,.015);const sofaLeg=mat(0x5a5147,.6);for(const x of[.18,2.38])for(const z of[1.3,2.1])add(new T.CylinderGeometry(.045,.06,.22,12),sofaLeg,x,.12,z);
     // Coffee table centered in front of sofa.
     rounded(-.05,.67,.22,1.55,.12,.94,oakLight,.055);for(const x of[-.68,.58])for(const z of[-.14,.58])box(x,.34,z,.055,.62,.055,dark);rounded(-.05,.755,.18,.62,.035,.24,mat(0xeee5d8),.02);rounded(.32,.78,.25,.42,.045,.28,mat(0x9b7362),.02);
+    // Small tabletop objects visible in the reference render.
+    const bookCover=mat(0x596c66,.9),bookPages=mat(0xe8dfd0,.98);
+    rounded(-.12,.77,.2,.38,.045,.25,bookCover,.012);rounded(-.12,.797,.2,.35,.012,.23,bookPages,.008);
+    rounded(-.38,.79,.18,.16,.055,.12,mat(0x9caa91,.85),.025);
+    const vase=add(new T.CylinderGeometry(.055,.075,.16,18),mat(0x8d9d8e,.4),.38,.86,.28);
     // Left-side console with drawers, legs, lamp and plant.
     const cred=rounded(-3.55,.53,-.55,1.7,.82,.58,oak,.065);cred.rotation.y=-Math.PI/2;const credTop=rounded(-3.55,.98,-.55,1.82,.09,.68,oakLight,.04);credTop.rotation.y=-Math.PI/2;for(const z of[-1.15,-.55,.05]){const d=rounded(-3.245,.56,z,.045,.28,.49,oakLight,.02);d.rotation.y=-Math.PI/2;add(new T.SphereGeometry(.027,12,8),metal,-3.205,.58,z);}for(const z of[-1.17,.08])add(new T.CylinderGeometry(.035,.04,.34,12),dark,-3.55,.16,z);
     add(new T.CylinderGeometry(.18,.14,.38,24),potMat,-2.28,.19,1.38);for(let i=0;i<11;i++){const a=i*2.399,dir=new T.Vector3(Math.cos(a)*(.26+(i%3)*.08),.68+(i%4)*.09,Math.sin(a)*(.25+(i%2)*.08));const leaf=add(new T.ConeGeometry(.105,.73,10),i%3?leafMat:leaf2,-2.28+dir.x,.34+dir.y/2,1.38+dir.z);leaf.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),dir.clone().normalize());}
-    add(new T.CylinderGeometry(.09,.12,.18,18),potMat,-3.05,.98,-.55);for(let i=0;i<5;i++){const leaf=add(new T.ConeGeometry(.055,.32,8),leafMat,-3.05+Math.sin(i*1.2)*.1,1.2,-.55+Math.cos(i*1.2)*.1);leaf.rotation.z=Math.sin(i)*.3;}add(new T.SphereGeometry(.16,24,16),mat(0xffe6ae,.24),-3.75,1.12,-.55);const glow=new T.PointLight(0xffce7d,.35,2);glow.position.set(-3.75,1.25,-.55);scene.add(glow);
+    add(new T.CylinderGeometry(.09,.12,.18,18),potMat,-3.05,.98,-.55);for(let i=0;i<5;i++){const leaf=add(new T.ConeGeometry(.055,.32,8),leafMat,-3.05+Math.sin(i*1.2)*.1,1.2,-.55+Math.cos(i*1.2)*.1);leaf.rotation.z=Math.sin(i)*.3;}add(new T.CylinderGeometry(.045,.075,.12,20),metal,-3.75,.99,-.55);
+    add(new T.CylinderGeometry(.10,.16,.22,24,1,true),mat(0xf0dfbd,.55),-3.75,1.18,-.55);
+    add(new T.SphereGeometry(.16,24,16),mat(0xffe6ae,.24),-3.75,1.12,-.55);const glow=new T.PointLight(0xffce7d,.35,2);glow.position.set(-3.75,1.25,-.55);scene.add(glow);
     // Minimal art piece on rear wall.
-    rounded(.15,2.05,3.16,1.25,.82,.07,mat(0x8b735f),.035);rounded(.15,2.05,3.105,1.12,.68,.035,mat(0xf0ede6),.025);box(-.12,2.05,3.08,.04,.66,.012,mat(0xb19c86),false);box(.25,2.05,3.08,.04,.66,.012,mat(0x8e9b8f),false);
+    rounded(.15,2.05,3.16,1.25,.82,.07,mat(0x806d5a),.035);
+    const artTexture=texture((g,w,h)=>{
+      g.fillStyle="#eee9df";g.fillRect(0,0,w,h);
+      g.fillStyle="#c8b8a4";g.fillRect(32,35,170,430);
+      g.fillStyle="#87968b";g.beginPath();g.arc(330,160,118,Math.PI,Math.PI*2);g.fill();
+      g.fillStyle="#b4a18d";g.fillRect(218,165,230,250);
+      g.fillStyle="#ded4c5";g.beginPath();g.arc(315,325,88,0,Math.PI*2);g.fill();
+      g.fillStyle="#7e897e";g.fillRect(210,380,210,42);
+    },512,512);
+    const artSurface=new T.Mesh(new T.PlaneGeometry(1.12,.68),new T.MeshStandardMaterial({map:artTexture,roughness:.95}));
+    artSurface.position.set(.15,2.05,3.105);scene.add(artSurface);
     // Amber volumes correspond precisely to the sofa and coffee table above.
     const volumeMat=new T.MeshStandardMaterial({color:0xf3a63f,transparent:true,opacity:.12,roughness:.6,depthWrite:false}),edgeMat=new T.LineBasicMaterial({color:0xe6a036,transparent:true,opacity:.96});function obstacle(x,z,sx,sz,h){const body=new T.Mesh(new T.BoxGeometry(sx,h,sz),volumeMat);body.position.set(x,h/2+.02,z);scene.add(body);const edge=new T.LineSegments(new T.EdgesGeometry(body.geometry),edgeMat);edge.position.copy(body.position);scene.add(edge);const floorMark=new T.Mesh(new T.PlaneGeometry(sx,sz),new T.MeshBasicMaterial({color:0xf2b65e,transparent:true,opacity:.18,side:T.DoubleSide}));floorMark.rotation.x=-Math.PI/2;floorMark.position.set(x,.012,z);scene.add(floorMark);}obstacle(1.28,1.72,2.82,1.12,1.42);obstacle(-.05,.22,1.68,1.02,.82);
     // Teal route / illustrative user position.
