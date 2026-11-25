@@ -102,7 +102,7 @@
   });
   document.getElementById("history-clear")?.addEventListener("click",()=>{activityLog=[];saveActivity();renderActivity();toast("Cronologia locale cancellata.");});
   const bell=document.getElementById("notification-toggle"),panel=document.getElementById("notification-panel"),dot=document.getElementById("notification-dot");
-  function setNotificationsOpen(open){if(!bell||!panel)return;panel.hidden=!open;bell.setAttribute("aria-expanded",String(open));}
+  function setNotificationsOpen(open){if(!bell||!panel)return;panel.hidden=!open;bell.setAttribute("aria-expanded",String(open));document.getElementById("app-main")?.classList.toggle("notification-open",open);}
   bell?.addEventListener("click",()=>setNotificationsOpen(panel.hidden));
   document.getElementById("notification-close")?.addEventListener("click",()=>setNotificationsOpen(false));
   document.getElementById("notification-read")?.addEventListener("click",()=>{if(dot)dot.hidden=true;setNotificationsOpen(false);toast("Notifiche informative segnate come lette.");});
