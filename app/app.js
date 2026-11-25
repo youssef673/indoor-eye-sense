@@ -2,7 +2,24 @@
   const views = [...document.querySelectorAll("[data-view]")];
   const navItems = [...document.querySelectorAll("[data-view-target]")];
   const status = document.getElementById("app-status");
-  const toast = (message) => {
+  const activityKey="ies-activity-log";
+  let activityLog=[];
+  try{activityLog=JSON.parse(localStorage.getItem(activityKey)||"[]");if(!Array.isArray(activityLog))activityLog=[];}catch(_){activityLog=[];}
+  function saveActivity(){try{localStorage.setItem(activityKey,JSON.stringify(activityLog.slice(0,60)));}catch(_){}}
+  function addActivity(label,detail="Interazione nell'interfaccia"){
+    const item={label,detail,at:new Date().toISOString()};
+    activityLog.unshift(item);activityLog=activityLog.slice(0,60);saveActivity();renderActivity();
+  }
+  function renderActivity(){
+    const list=document.getElementById("history-list"),count=document.getElementById("history-count");
+    if(count)count.textContent=String(activityLog.length);
+    if(!list)return;
+    if(!activityLog.length){list.innerHTML='<div class="history-empty-state"><span>◷</span><b>Nessuna attività registrata</b><p>Le sezioni visitate e le preferenze modificate compariranno qui.</p></div>';return;}
+    list.innerHTML=activityLog.map(item=>{const d=new Date(item.at);const date=d.toLocaleDateString("it-IT",{day:"2-digit",month:"short"}),time=d.toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit"});return '<div class="history-row"><span class="history-row-dot"></span><div><b>'+escapeText(item.label)+'</b><p>'+escapeText(item.detail)+'</p></div><time>'+date+' · '+time+'</time></div>';}).join("");
+  }
+  function escapeText(value){return String(value).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));}
+  renderActivity();
+    const toast = (message) => {
     if (!status) return;
     status.textContent = message;
     status.classList.add("is-visible");
@@ -21,7 +38,7 @@
     const heading = document.querySelector(`[data-view="${name}"] h1`);
     if (heading) heading.setAttribute("tabindex", "-1"), heading.focus({preventScroll:true});
   }
-  navItems.forEach((item) => item.addEventListener("click", () => showView(item.dataset.viewTarget)));
+  navItems.forEach((item) => item.addEventListener("click", () => {const name=item.dataset.viewTarget;showView(name);const label=item.querySelector("span")?.textContent||name;addActivity("Apertura sezione: "+label,"Navigazione nella companion app");}));
   // Local profile: no external account or cloud identity is implied.
   const profileForm = document.getElementById("profile-form");
   const profileNameInput = document.getElementById("profile-name-input");
@@ -63,14 +80,36 @@
 
   document.querySelectorAll("[data-go-view]").forEach((item) => item.addEventListener("click", () => showView(item.dataset.goView)));
 
+  const settingsKey="ies-local-settings";
+  function loadLocalSettings(){try{const saved=JSON.parse(localStorage.getItem(settingsKey)||"{}");document.querySelectorAll("[data-setting]").forEach(t=>{if(Object.prototype.hasOwnProperty.call(saved,t.dataset.setting)){const on=!!saved[t.dataset.setting];t.setAttribute("aria-checked",String(on));t.classList.toggle("is-on",on);}});}catch(_){}}
+  function saveLocalSettings(){const values={};document.querySelectorAll("[data-setting]").forEach(t=>values[t.dataset.setting]=t.getAttribute("aria-checked")==="true");try{localStorage.setItem(settingsKey,JSON.stringify(values));}catch(_){}}
+  loadLocalSettings();
   document.querySelectorAll("[data-setting]").forEach((toggle) => {
     toggle.addEventListener("click", () => {
       const active = toggle.getAttribute("aria-checked") === "true";
       toggle.setAttribute("aria-checked", String(!active));
-      toggle.classList.toggle("is-on", !active);
-      toast(`Preferenza demo ${!active ? "attivata" : "disattivata"}. Nessun dispositivo è stato modificato.`);
+      toggle.classList.toggle("is-on", !active);saveLocalSettings();
+      const label=toggle.closest(".setting-row")?.querySelector("b")?.textContent||toggle.dataset.setting;
+      addActivity("Preferenza modificata: "+label,!active?"Attivata localmente":"Disattivata localmente");
+      const feedback=document.getElementById("settings-feedback");if(feedback)feedback.textContent="Preferenza salvata nel browser";
+      toast(`Preferenza ${!active ? "attivata" : "disattivata"}. Nessun dispositivo è stato modificato.`);
     });
   });
+  document.getElementById("settings-reset")?.addEventListener("click",()=>{
+    const defaults={voice:true,haptic:true,visual:false};
+    document.querySelectorAll("[data-setting]").forEach(t=>{const on=!!defaults[t.dataset.setting];t.setAttribute("aria-checked",String(on));t.classList.toggle("is-on",on);});
+    saveLocalSettings();addActivity("Preferenze ripristinate","Valori iniziali della companion app");const feedback=document.getElementById("settings-feedback");if(feedback)feedback.textContent="Preferenze iniziali ripristinate";toast("Preferenze ripristinate.");
+  });
+  document.getElementById("history-clear")?.addEventListener("click",()=>{activityLog=[];saveActivity();renderActivity();toast("Cronologia locale cancellata.");});
+  const bell=document.getElementById("notification-toggle"),panel=document.getElementById("notification-panel"),dot=document.getElementById("notification-dot");
+  function setNotificationsOpen(open){if(!bell||!panel)return;panel.hidden=!open;bell.setAttribute("aria-expanded",String(open));}
+  bell?.addEventListener("click",()=>setNotificationsOpen(panel.hidden));
+  document.getElementById("notification-close")?.addEventListener("click",()=>setNotificationsOpen(false));
+  document.getElementById("notification-read")?.addEventListener("click",()=>{if(dot)dot.hidden=true;setNotificationsOpen(false);toast("Notifiche informative segnate come lette.");});
+  document.addEventListener("click",e=>{if(panel&&!panel.hidden&&!e.target.closest(".notification-wrap"))setNotificationsOpen(false);});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")setNotificationsOpen(false);});
+  document.querySelectorAll("[data-go-view]").forEach(item=>item.addEventListener("click",()=>{const name=item.dataset.goView;showView(name);addActivity("Apertura sezione: "+name,"Collegamento dal centro assistenza");}));
+  
 
   const range = document.getElementById("intensity");
   const rangeValue = document.getElementById("intensity-value");
