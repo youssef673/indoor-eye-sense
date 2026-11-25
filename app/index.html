@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101d29">
-  <meta name="description" content="Esplora la demo interattiva della companion web app INDOOR EYE SENSE. Nessun dispositivo reale collegato; tutti i dati sono simulati.">
+  <meta name="description" content="Companion app INDOOR EYE SENSE: interfaccia di controllo, preferenze e visualizzazione spaziale del progetto.">
   <link rel="stylesheet" href="app.css">
-  <title>Companion App Demo — INDOOR EYE SENSE</title>
+  <title>INDOOR EYE SENSE — Companion App</title>
 </head>
 <body>
   <a class="skip-link" href="#app-main">Salta al contenuto</a>
-  <div class="demo-banner"><span class="demo-pulse"></span><strong>AMBIENTE DEMO</strong><span>La connessione hardware non è attiva. Le scene e i dati sono simulati.</span><a href="../">Torna al sito ↗</a></div>
+  <div class="demo-banner sense-build-banner"><span class="demo-pulse"></span><strong>STATO DEL PROGETTO</strong><span>Interfaccia in sviluppo · collegamento hardware non ancora attivo.</span><a href="../">Sito INDOOR EYE ↗</a></div>
   <div class="app-shell">
     <aside class="sidebar" aria-label="Navigazione della web app">
       <a class="app-brand" href="../"><span class="app-brand__symbol">IE</span><span>INDOOR EYE<small>SENSE / COMPANION</small></span></a>
@@ -22,7 +22,7 @@
         <button class="app-nav__item" type="button" data-view-target="privacy"><span>◇</span>Privacy</button>
       </nav>
       <div class="sidebar-bottom">
-        <div class="connection-card"><span class="connection-dot"></span><div><b>Dispositivo non connesso</b><small>Modalità dimostrativa</small></div></div>
+        <div class="connection-card"><span class="connection-dot"></span><div><b>Dispositivo non connesso</b><small>Collegamento non configurato</small></div></div>
         <a class="back-link" href="../">← Sito INDOOR EYE</a>
       </div>
     </aside>
@@ -33,7 +33,7 @@
         <div class="topbar-actions"><span class="demo-chip">DEMO</span><span class="offline-chip"><i></i> Offline</span></div>
       </header>
 
-      <section class="app-view is-visible" data-view="overview" aria-labelledby="overview-title">
+      <section class="app-view" data-view="overview" aria-labelledby="overview-title">
         <div class="view-heading"><div><p class="eyebrow">PANORAMICA / 01</p><h1 id="overview-title">Benvenuto in SENSE.</h1><p>Un'anteprima dell'esperienza digitale che affiancherà il dispositivo.</p></div><span class="view-date">PROTOTYPE INTERFACE</span></div>
         <div class="notice"><span>i</span><p><b>Stai esplorando una scena 3D simulata.</b> Nessun sensore sta acquisendo dati: geometria e ostacoli non rappresentano un luogo reale.</p></div>
         <div class="metric-grid">
@@ -55,10 +55,47 @@
         </div>
       </section>
 
-      <section class="app-view" data-view="map" aria-labelledby="map-title">
-        <div class="view-heading"><div><p class="eyebrow">SPATIAL DATA / 02</p><h1 id="map-title">Mappa spaziale.</h1><p>Esplora un modello 3D interattivo: ruota la scena e osserva volumi, pareti e ostacoli simulati.</p></div><span class="view-date">MAP / DEMO-01</span></div>
-        <div class="notice"><span>i</span><p>Questa non è una scansione ambientale. Nessun ambiente è stato acquisito e la mappa non può essere usata per orientarsi.</p></div>
-        <article class="panel map-detail-panel"><div class="panel-heading"><div><span class="panel-kicker">CONCEPT VISUALIZATION</span><h2>Schema di un ambiente</h2></div><span class="panel-badge">NON REALE</span></div><div class="scene3d-wrap scene3d-wrap--large"><canvas class="scene3d" data-scene3d aria-label="Modello tridimensionale dimostrativo di un ambiente. Trascina per ruotare e usa la rotella per avvicinarti."></canvas><div class="scene3d-hint">MODELLO 3D · RUOTA CON IL MOUSE O CON IL DITO</div><div class="scene3d-controls"><button type="button" data-scene-reset>Ripristina inquadratura</button><span>GEOMETRIA ILLUSTRATIVA / NON MISURATA</span></div></div><div class="map-detail-legend"><div><i class="legend-known"></i><span><b>Superficie rilevata (demo)</b><small>Elemento grafico simulato</small></span></div><div><i class="legend-object"></i><span><b>Ingombro (demo)</b><small>Oggetto illustrativo</small></span></div><div><i class="legend-unknown"></i><span><b>Dato non disponibile</b><small>Non equivale a spazio libero</small></span></div></div></article>
+      <section class="app-view is-visible" data-view="map" aria-labelledby="map-title">
+        <div class="sense-map-heading">
+          <div><p class="eyebrow">SENSE / SPATIAL EXPERIENCE</p><h1 id="map-title">Mappa spaziale</h1><p>Visualizza l'ambiente, esplora la scena tridimensionale e consulta le informazioni disponibili.</p></div>
+          <span class="sense-project-chip"><span></span> VISUALIZZAZIONE DEL PROGETTO</span>
+        </div>
+        <div class="sense-integrity-note"><span class="sense-info-icon">i</span><p><strong>Modello ambientale illustrativo.</strong> Il dispositivo non è collegato: oggetti e geometrie mostrati qui non sono rilevamenti reali e non vanno usati per orientarsi.</p></div>
+        <div class="sense-spatial-layout">
+          <article class="panel sense-scene-card">
+            <div class="sense-card-heading"><div><span class="panel-kicker">AMBIENTE / RICOSTRUZIONE TRIDIMENSIONALE</span><h2>Stanza di riferimento</h2></div><span class="panel-badge">MODELLO NON CALIBRATO</span></div>
+            <div class="scene3d-wrap scene3d-wrap--large sense-scene-stage">
+              <canvas class="scene3d" data-scene3d aria-label="Modello tridimensionale illustrativo di una stanza arredata. Puoi ruotare con un dito, ingrandire con due dita oppure usare i controlli più e meno."></canvas>
+              <div class="scene3d-hint">TRASCINA PER RUOTARE · PINCH PER ZOOM</div>
+              <div class="scene3d-controls"><button type="button" data-scene-reset>Ripristina vista</button><span>SCENA ILLUSTRATIVA · NON MISURATA</span></div>
+            </div>
+            <div class="sense-scene-footer"><span><i class="sense-dot sense-dot--teal"></i> Elementi della scena</span><span><i class="sense-dot sense-dot--amber"></i> Ingombri illustrativi</span><span><i class="sense-dot sense-dot--grey"></i> Dati reali non disponibili</span></div>
+          </article>
+          <aside class="panel sense-environment-card">
+            <div class="sense-card-heading"><div><span class="panel-kicker">SCENA CORRENTE</span><h2><span class="sense-heading-icon">ⓘ</span> Informazioni ambiente</h2></div></div>
+            <div class="sense-environment-row"><span class="sense-object-icon">▰</span><div><strong>Divano</strong><small>Arredo illustrativo · Oggetto A</small></div><span class="sense-distance">Distanza n/d</span></div>
+            <div class="sense-environment-row"><span class="sense-object-icon">▱</span><div><strong>Tavolino</strong><small>Arredo illustrativo · Oggetto B</small></div><span class="sense-distance">Distanza n/d</span></div>
+            <div class="sense-route-status"><span class="sense-route-icon">↗</span><div><strong>Percorso</strong><small>Non calcolabile senza dati ambientali reali</small></div><span class="sense-status-dot"></span></div>
+            <div class="sense-environment-foot"><span>STATO DATI</span><strong>In attesa del collegamento hardware</strong></div>
+          </aside>
+        </div>
+        <div class="sense-bottom-grid">
+          <article class="panel sense-bottom-card sense-device-card">
+            <div class="sense-bottom-title"><span class="sense-bottom-icon">◉</span><div><span class="panel-kicker">HARDWARE</span><h2>Stato dispositivo</h2></div></div>
+            <div class="sense-device-content"><img src="../assets/images/sense-bracelet.webp" alt="Concept del bracciale INDOOR EYE SENSE"><div><strong class="sense-offline-text">Non connesso</strong><small>Il prototipo non invia ancora dati all'app.</small><div class="sense-device-meta"><span>Batteria <b>Non disponibile</b></span><span>Segnale <b>Non disponibile</b></span></div></div></div>
+          </article>
+          <article class="panel sense-bottom-card sense-feedback-card">
+            <div class="sense-bottom-title"><span class="sense-bottom-icon sense-bottom-icon--violet">∿</span><div><span class="panel-kicker">PERSONALIZZAZIONE</span><h2>Preferenze feedback</h2></div></div>
+            <div class="sense-feedback-row"><span>Voce</span><button class="switch is-on" type="button" role="switch" aria-checked="true" aria-label="Preferenza feedback vocale" data-setting="voice"><span></span></button></div>
+            <div class="sense-feedback-row"><span>Tattile</span><button class="switch is-on" type="button" role="switch" aria-checked="true" aria-label="Preferenza feedback tattile" data-setting="haptic"><span></span></button></div>
+            <div class="sense-feedback-row"><span>Visivo</span><button class="switch" type="button" role="switch" aria-checked="false" aria-label="Preferenza feedback visivo" data-setting="visual"><span></span></button></div>
+            <small class="sense-preference-note">Preferenze locali: non attivano hardware.</small>
+          </article>
+          <article class="panel sense-bottom-card sense-events-card">
+            <div class="sense-bottom-title"><span class="sense-bottom-icon sense-bottom-icon--amber">◷</span><div><span class="panel-kicker">ATTIVITÀ</span><h2>Eventi recenti</h2></div></div>
+            <div class="sense-empty-events"><span>✓</span><div><strong>Nessun evento registrato</strong><small>La cronologia si popolerà quando saranno disponibili dati reali dal dispositivo.</small></div></div>
+          </article>
+        </div>
       </section>
 
       <section class="app-view" data-view="feedback" aria-labelledby="feedback-title">
