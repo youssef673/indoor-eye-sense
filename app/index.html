@@ -9,28 +9,31 @@
 </head>
 <body>
   <a class="skip-link" href="#app-main">Salta al contenuto</a>
-  <div class="demo-banner sense-build-banner"><span class="demo-pulse"></span><strong>STATO DEL PROGETTO</strong><span>Interfaccia in sviluppo · collegamento hardware non ancora attivo.</span><a href="../">Sito INDOOR EYE ↗</a></div>
+  
   <div class="app-shell">
     <aside class="sidebar" aria-label="Navigazione della web app">
-      <a class="app-brand" href="../"><span class="app-brand__symbol">IE</span><span>INDOOR EYE<small>SENSE / COMPANION</small></span></a>
+      <a class="app-brand" href="../"><span class="app-brand__symbol"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M5 32C12 19 21 13 32 13s20 6 27 19C52 45 43 51 32 51S12 45 5 32Z"/><circle cx="32" cy="32" r="9"/><circle class="brand-eye-dot" cx="32" cy="32" r="3"/></svg></span><span>INDOOR EYE<small>SENSE / COMPANION</small></span></a>
       <div class="workspace-label">WORKSPACE</div>
-      <nav class="app-nav">
-        <button class="app-nav__item" type="button" data-view-target="overview"><span>◫</span>Panoramica</button>
-        <button class="app-nav__item is-active" type="button" data-view-target="map" aria-current="page"><span>⌗</span>Mappa spaziale</button>
-        <button class="app-nav__item" type="button" data-view-target="feedback"><span>◉</span>Feedback</button>
-        <button class="app-nav__item" type="button" data-view-target="device"><span>◎</span>Dispositivo</button>
-        <button class="app-nav__item" type="button" data-view-target="privacy"><span>◇</span>Privacy</button>
+      <nav class="app-nav" aria-label="Menu principale">
+        <button class="app-nav__item" type="button" data-view-target="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Panoramica</span></button>
+        <button class="app-nav__item is-active" type="button" data-view-target="map" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 17l9 5 9-5"/></svg><span>Mappa spaziale</span></button>
+        <button class="app-nav__item" type="button" data-view-target="navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 3-7.4 18-3.2-7.4L3 10.4 21 3Z"/><path d="m10.4 13.6 4-4"/></svg><span>Navigazione</span></button>
+        <button class="app-nav__item" type="button" data-view-target="device"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="4"/><path d="M8 6H5v3h3M16 6h3v3h-3M8 18H5v-3h3M16 18h3v-3h-3"/></svg><span>Dispositivo</span></button>
+        <button class="app-nav__item" type="button" data-view-target="feedback"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h3l2-7 4 14 3-10 2 6h6"/></svg><span>Feedback</span></button>
+        <button class="app-nav__item" type="button" data-view-target="preferences"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M2 14h4m4-6h4m4 8h4"/></svg><span>Preferenze</span></button>
+        <button class="app-nav__item" type="button" data-view-target="history"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Cronologia</span></button>
+        <button class="app-nav__item" type="button" data-view-target="support"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.5 2.5 0 1 1 4.4 1.6c-1.2 1.2-2 1.5-2 3M12 17h.01"/></svg><span>Supporto</span></button>
       </nav>
       <div class="sidebar-bottom">
-        <div class="connection-card"><span class="connection-dot"></span><div><b>Dispositivo non connesso</b><small>Collegamento non configurato</small></div></div>
-        <a class="back-link" href="../">← Sito INDOOR EYE</a>
+        <button class="sidebar-account" type="button" data-view-target="profile"><span class="sidebar-account__avatar">Y</span><span><b>Youssef</b><small>Account personale</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+        <button class="sidebar-settings" type="button" data-view-target="preferences"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.7a8 8 0 0 1-1.5.9l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.5-.9l-1.7.7-1.4-2.4 1.4-1.1a7 7 0 0 1 0-1.8l-1.4-1.1 1.4-2.4 1.7.7a8 8 0 0 1 1.5-.9l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.5.9l1.7-.7 1.4 2.4-1.4 1.1a7 7 0 0 1 0 1.8Z"/></svg><span>Impostazioni</span></button>
       </div>
     </aside>
 
     <main class="app-main" id="app-main">
       <header class="app-topbar">
-        <div class="sense-welcome"><span class="sense-avatar">S</span><div><span class="topbar-title">Mappa spaziale</span><span class="sense-topbar-subtitle">Companion App · INDOOR EYE SENSE</span></div></div>
-        <div class="topbar-actions"><span class="demo-chip">IN SVILUPPO</span><span class="offline-chip"><i></i> Hardware offline</span></div>
+        <div class="sense-welcome"><span class="sense-avatar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12c2.4-4 5.4-6 9-6s6.6 2 9 6c-2.4 4-5.4 6-9 6s-6.6-2-9-6Z"/><circle cx="12" cy="12" r="3.2"/></svg></span><div><span class="topbar-title">Bentornato, Youssef</span><span class="sense-topbar-subtitle">Companion App · INDOOR EYE SENSE</span></div></div>
+        <div class="topbar-actions"><button class="topbar-icon-button" type="button" aria-label="Notifiche"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><i></i></button><button class="topbar-profile" type="button" data-view-target="profile" aria-label="Apri profilo">Y</button></div>
       </header>
 
       <section class="app-view" data-view="overview" aria-labelledby="overview-title">
@@ -57,44 +60,45 @@
 
       <section class="app-view is-visible" data-view="map" aria-labelledby="map-title">
         <div class="sense-map-heading">
-          <div><p class="eyebrow">SENSE / SPATIAL EXPERIENCE</p><h1 id="map-title">Mappa spaziale</h1><p>Visualizza l'ambiente, esplora la scena tridimensionale e consulta le informazioni disponibili.</p></div>
-          <span class="sense-project-chip"><span></span> VISUALIZZAZIONE DEL PROGETTO</span>
+          <div><h1 id="map-title">Mappa spaziale</h1><p>Esplora l'ambiente in 3D, visualizza gli ostacoli e consulta le informazioni disponibili.</p></div>
+          <span class="sense-project-chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></svg> VISUALIZZAZIONE DEL PROGETTO</span>
         </div>
-        <div class="sense-integrity-note"><span class="sense-info-icon">i</span><p><strong>Modello ambientale illustrativo.</strong> Il dispositivo non è collegato: oggetti e geometrie mostrati qui non sono rilevamenti reali e non vanno usati per orientarsi.</p></div>
+        <div class="sense-integrity-note"><span class="sense-info-icon">i</span><p>Anteprima illustrativa: il bracciale non è collegato. Nessuna distanza, posizione o presenza di ostacoli è attualmente misurata dal dispositivo.</p></div>
         <div class="sense-spatial-layout">
           <article class="panel sense-scene-card">
-            <div class="sense-card-heading"><div><span class="panel-kicker">AMBIENTE / RICOSTRUZIONE TRIDIMENSIONALE</span><h2>Stanza di riferimento</h2></div><span class="panel-badge">MODELLO NON CALIBRATO</span></div>
-            <div class="scene3d-wrap scene3d-wrap--large sense-scene-stage">
-              <canvas class="scene3d" data-scene3d aria-label="Modello tridimensionale illustrativo di una stanza arredata. Puoi ruotare con un dito, ingrandire con due dita oppure usare i controlli più e meno."></canvas>
-              <div class="scene3d-hint">TRASCINA PER RUOTARE · PINCH PER ZOOM</div>
-              <div class="scene3d-controls"><button type="button" data-scene-reset>Ripristina vista</button><span>SCENA ILLUSTRATIVA · NON MISURATA</span></div>
+            <div class="sense-scene-stage">
+              <canvas class="scene3d" data-scene3d aria-label="Scena tridimensionale illustrativa di una stanza. Trascina per ruotare, usa i pulsanti più e meno per zoom."></canvas>
+              <div class="scene-toolbar scene-toolbar--left">
+                <button type="button" data-scene-zoom-in aria-label="Ingrandisci" title="Ingrandisci">+</button>
+                <button type="button" data-scene-zoom-out aria-label="Rimpicciolisci" title="Rimpicciolisci">−</button>
+                <button type="button" data-scene-reset aria-label="Ripristina vista" title="Ripristina vista"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M6.1 9A7 7 0 0 1 18 6l2 1M4 17l2 1a7 7 0 0 0 11.9-3"/></svg></button>
+                <button type="button" data-scene-fullscreen aria-label="Schermo intero" title="Schermo intero"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5"/></svg></button>
+              </div>
+              <div class="scene-toolbar scene-toolbar--topright">
+                <label class="sr-only" for="scene-view-preset">Vista della scena</label><select id="scene-view-preset" data-scene-preset aria-label="Seleziona vista"><option value="3d">◇ Vista 3D</option><option value="top">Vista superiore</option><option value="front">Vista frontale</option><option value="side">Vista laterale</option></select>
+              </div>
+              <div class="scene-bottom-bar">
+                <div class="scene-view-tabs" role="group" aria-label="Prospettiva della scena"><button class="is-selected" type="button" data-scene-view="3d">Libera</button><button type="button" data-scene-view="top">Superiore</button><button type="button" data-scene-view="front">Frontale</button><button type="button" data-scene-view="side">Laterale</button></div>
+                <span class="scene-measurement-label">SCENA ILLUSTRATIVA · NON MISURATA</span>
+              </div>
             </div>
-            <div class="sense-scene-footer"><span><i class="sense-dot sense-dot--teal"></i> Elementi della scena</span><span><i class="sense-dot sense-dot--amber"></i> Ingombri illustrativi</span><span><i class="sense-dot sense-dot--grey"></i> Dati reali non disponibili</span></div>
           </article>
           <aside class="panel sense-environment-card">
-            <div class="sense-card-heading"><div><span class="panel-kicker">SCENA CORRENTE</span><h2><span class="sense-heading-icon">ⓘ</span> Informazioni ambiente</h2></div></div>
-            <div class="sense-environment-row"><span class="sense-object-icon">▰</span><div><strong>Divano</strong><small>Arredo illustrativo · Oggetto A</small></div><span class="sense-distance">Distanza n/d</span></div>
-            <div class="sense-environment-row"><span class="sense-object-icon">▱</span><div><strong>Tavolino</strong><small>Arredo illustrativo · Oggetto B</small></div><span class="sense-distance">Distanza n/d</span></div>
-            <div class="sense-route-status"><span class="sense-route-icon">↗</span><div><strong>Percorso</strong><small>Non calcolabile senza dati ambientali reali</small></div><span class="sense-status-dot"></span></div>
-            <div class="sense-environment-foot"><span>STATO DATI</span><strong>In attesa del collegamento hardware</strong></div>
+            <div class="sense-card-heading"><h2><span class="sense-heading-icon">ⓘ</span> Informazioni ambiente</h2></div>
+            <div class="sense-environment-row"><span class="sense-object-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3M2 13h20v6h-2v-2H4v2H2zM6 13V9m12 4V9"/></svg></span><div><strong>Divano</strong><small>Arredo illustrativo · Oggetto A</small></div><span class="sense-distance">Distanza n/d</span></div>
+            <div class="sense-environment-row"><span class="sense-object-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h18l-2 4H5L3 9Zm2 4v7m14-7v7M7 9V6h10v3"/></svg></span><div><strong>Tavolino</strong><small>Arredo illustrativo · Oggetto B</small></div><span class="sense-distance">Distanza n/d</span></div>
+            <div class="sense-route-status"><span class="sense-route-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18c4 0 4-12 9-12 3 0 3 4 6 4h3M16 6l5 4-5 4"/></svg></span><div><strong>Percorso suggerito</strong><small>Non disponibile senza dati del dispositivo</small></div><span class="sense-status-dot"></span></div>
+            <div class="sense-environment-foot"><span>STATO DEL SISTEMA</span><strong>Dispositivo non connesso</strong></div>
           </aside>
         </div>
         <div class="sense-bottom-grid">
-          <article class="panel sense-bottom-card sense-device-card">
-            <div class="sense-bottom-title"><span class="sense-bottom-icon">◉</span><div><span class="panel-kicker">HARDWARE</span><h2>Stato dispositivo</h2></div></div>
-            <div class="sense-device-content"><img src="../assets/images/sense-bracelet.webp" alt="Concept del bracciale INDOOR EYE SENSE"><div><strong class="sense-offline-text">Non connesso</strong><small>Il prototipo non invia ancora dati all'app.</small><div class="sense-device-meta"><span>Batteria <b>Non disponibile</b></span><span>Segnale <b>Non disponibile</b></span></div></div></div>
+          <article class="panel sense-bottom-card sense-device-card"><div class="sense-bottom-title"><span class="sense-bottom-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="5"/><path d="M8 6h8M8 18h8"/></svg></span><h2>Stato dispositivo</h2><span class="sense-card-chevron">›</span></div><div class="sense-device-content"><img src="../assets/images/sense-bracelet.webp" alt="Concept del bracciale INDOOR EYE SENSE"><div><strong class="sense-offline-text">Non connesso</strong><small>Collegamento hardware non attivo</small><div class="sense-device-meta"><span>Batteria <b>Non disponibile</b></span><span>Segnale <b>Non disponibile</b></span></div></div></div></article>
+          <article class="panel sense-bottom-card sense-feedback-card"><div class="sense-bottom-title"><span class="sense-bottom-icon sense-bottom-icon--violet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h3l2-7 4 14 3-10 2 6h6"/></svg></span><h2>Feedback attivi</h2><span class="sense-card-chevron">›</span></div>
+            <div class="sense-feedback-row"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h3l5 4V6l-5 4H4Zm12-2a6 6 0 0 1 0 8m2-11a10 10 0 0 1 0 14"/></svg> Vocale</span><button class="switch is-on" type="button" role="switch" aria-checked="true" aria-label="Preferenza feedback vocale" data-setting="voice"><span></span></button></div>
+            <div class="sense-feedback-row"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg> Tattile</span><button class="switch is-on" type="button" role="switch" aria-checked="true" aria-label="Preferenza feedback tattile" data-setting="haptic"><span></span></button></div>
+            <div class="sense-feedback-row"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2"/></svg> Visivo</span><button class="switch" type="button" role="switch" aria-checked="false" aria-label="Preferenza feedback visivo" data-setting="visual"><span></span></button></div>
           </article>
-          <article class="panel sense-bottom-card sense-feedback-card">
-            <div class="sense-bottom-title"><span class="sense-bottom-icon sense-bottom-icon--violet">∿</span><div><span class="panel-kicker">PERSONALIZZAZIONE</span><h2>Preferenze feedback</h2></div></div>
-            <div class="sense-feedback-row"><span>Voce</span><button class="switch is-on" type="button" role="switch" aria-checked="true" aria-label="Preferenza feedback vocale" data-setting="voice"><span></span></button></div>
-            <div class="sense-feedback-row"><span>Tattile</span><button class="switch is-on" type="button" role="switch" aria-checked="true" aria-label="Preferenza feedback tattile" data-setting="haptic"><span></span></button></div>
-            <div class="sense-feedback-row"><span>Visivo</span><button class="switch" type="button" role="switch" aria-checked="false" aria-label="Preferenza feedback visivo" data-setting="visual"><span></span></button></div>
-            <small class="sense-preference-note">Preferenze locali: non attivano hardware.</small>
-          </article>
-          <article class="panel sense-bottom-card sense-events-card">
-            <div class="sense-bottom-title"><span class="sense-bottom-icon sense-bottom-icon--amber">◷</span><div><span class="panel-kicker">ATTIVITÀ</span><h2>Eventi recenti</h2></div></div>
-            <div class="sense-empty-events"><span>✓</span><div><strong>Nessun evento registrato</strong><small>La cronologia si popolerà quando saranno disponibili dati reali dal dispositivo.</small></div></div>
-          </article>
+          <article class="panel sense-bottom-card sense-events-card"><div class="sense-bottom-title"><span class="sense-bottom-icon sense-bottom-icon--amber"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h2>Eventi recenti</h2><span class="sense-card-chevron">›</span></div><div class="sense-empty-events"><span>✓</span><div><strong>Nessun evento registrato</strong><small>Gli eventi appariranno quando il dispositivo sarà collegato.</small></div></div></article>
         </div>
       </section>
 
@@ -120,6 +124,11 @@
         <div class="device-info-grid"><article class="panel"><span class="panel-kicker">HARDWARE</span><h3>Componenti candidati</h3><p>Visione stereo, sensore ToF, ultrasuoni, unità di elaborazione e feedback aptico/audio sono ipotesi tecniche da verificare.</p></article><article class="panel"><span class="panel-kicker">NEXT STEP</span><h3>Integrazione da validare</h3><p>La connessione sarà progettata solo dopo aver definito hardware, protocolli, gestione degli errori e requisiti di sicurezza.</p></article></div>
       </section>
 
+<section class="app-view" data-view="navigation" aria-labelledby="navigation-title"><div class="view-heading"><div><p class="eyebrow">SENSE / NAVIGATION</p><h1 id="navigation-title">Navigazione</h1><p>Indicazioni spaziali e percorsi saranno disponibili dopo l'integrazione con i sensori.</p></div></div><div class="sense-integrity-note"><span class="sense-info-icon">i</span><p><strong>Nessun percorso è attualmente calcolabile.</strong> La mappa corrente è illustrativa e non fornisce indicazioni reali di movimento.</p></div></section>
+      <section class="app-view" data-view="preferences" aria-labelledby="preferences-title"><div class="view-heading"><div><p class="eyebrow">SENSE / PERSONAL SETTINGS</p><h1 id="preferences-title">Preferenze e impostazioni</h1><p>Personalizza l'interfaccia e i canali informativi della companion app.</p></div></div><div class="settings-grid"><article class="panel settings-panel"><span class="panel-kicker">PREFERENZE LOCALI</span><h2>Canali di feedback</h2><div class="setting-row"><div><b>Voce</b><small>Preferenza salvata solo in questa sessione</small></div><button class="switch is-on" role="switch" aria-checked="true" type="button" data-setting="voice"><span></span></button></div><div class="setting-row"><div><b>Tattile</b><small>Preferenza locale, non invia comandi al dispositivo</small></div><button class="switch is-on" role="switch" aria-checked="true" type="button" data-setting="haptic"><span></span></button></div><div class="setting-row"><div><b>Visivo</b><small>Preferenza locale</small></div><button class="switch" role="switch" aria-checked="false" type="button" data-setting="visual"><span></span></button></div></article><article class="panel note-panel"><span class="panel-kicker">ACCOUNT E PRIVACY</span><h2>Controllo dei dati</h2><p>Le impostazioni di questa versione non attivano il dispositivo e non memorizzano dati ambientali.</p></article></div></section>
+      <section class="app-view" data-view="history" aria-labelledby="history-title"><div class="view-heading"><div><p class="eyebrow">SENSE / ACTIVITY</p><h1 id="history-title">Cronologia</h1><p>Registro degli eventi associati al dispositivo.</p></div></div><article class="panel sense-history-empty"><span>◷</span><h2>Nessun evento disponibile</h2><p>La cronologia si aggiornerà quando saranno raccolti dati reali e il collegamento sarà attivo.</p></article></section>
+      <section class="app-view" data-view="support" aria-labelledby="support-title"><div class="view-heading"><div><p class="eyebrow">SENSE / HELP CENTER</p><h1 id="support-title">Supporto</h1><p>Informazioni sul progetto e sui limiti della versione attuale.</p></div></div><div class="settings-grid"><article class="panel"><h2>Come funziona questa schermata?</h2><p>La scena 3D è una rappresentazione grafica di un ambiente. Non è connessa ai sensori e non deve essere usata per spostarsi.</p></article><article class="panel"><h2>Il dispositivo è collegato?</h2><p>No. Il prototipo mostrato nelle fotografie è in fase sperimentale e non invia ancora dati alla companion app.</p></article></div></section>
+      <section class="app-view" data-view="profile" aria-labelledby="profile-title"><div class="view-heading"><div><p class="eyebrow">SENSE / ACCOUNT</p><h1 id="profile-title">Profilo</h1><p>Account personale della companion app.</p></div></div><article class="panel profile-panel"><span class="profile-avatar-large">Y</span><div><h2>Youssef</h2><p>Profilo locale · Nessun account cloud collegato</p></div></article></section>
       <section class="app-view" data-view="privacy" aria-labelledby="privacy-title">
         <div class="view-heading"><div><p class="eyebrow">CONTROL / 05</p><h1 id="privacy-title">Privacy e controllo.</h1><p>Una dimostrazione delle scelte che guideranno la piattaforma.</p></div><span class="view-date">PRIVACY BY DESIGN</span></div>
         <div class="privacy-summary panel"><div class="privacy-summary__icon">◇</div><div><span class="panel-kicker">QUESTA DEMO</span><h2>Demo locale, con assistente AI separato.</h2><p>Questa web app non usa fotocamera, microfono o sensori e non si collega a un dispositivo reale. Le preferenze della demo restano nel browser. Se usi l’assistente AI, il testo della domanda e una parte della conversazione vengono inviati al server del progetto e al servizio AI di OpenAI. Non inserire dati personali, sanitari o riservati. Consulta la pagina Privacy per i dettagli.</p></div></div>
