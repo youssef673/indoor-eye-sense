@@ -124,6 +124,26 @@
     function add(g,m,x=0,y=0,z=0,cast=true){const o=new T.Mesh(g,m);o.position.set(x,y,z);o.castShadow=cast;o.receiveShadow=true;scene.add(o);return o;}function box(x,y,z,sx,sy,sz,m,cast=true){return add(new T.BoxGeometry(sx,sy,sz),m,x,y,z,cast);}
     function rounded(x,y,z,sx,sy,sz,m,r=.07){const sh=new T.Shape(),w=sx/2-r,h=sy/2-r;sh.moveTo(-w,-h-r);sh.lineTo(w,-h-r);sh.quadraticCurveTo(w+r,-h-r,w+r,-h);sh.lineTo(w+r,h);sh.quadraticCurveTo(w+r,h+r,w,h+r);sh.lineTo(-w,h+r);sh.quadraticCurveTo(-w-r,h+r,-w-r,h);sh.lineTo(-w-r,-h);sh.quadraticCurveTo(-w-r,-h-r,-w,-h-r);const g=new T.ExtrudeGeometry(sh,{depth:Math.max(.04,sz-2*r),bevelEnabled:true,bevelSegments:3,steps:1,bevelSize:r*.7,bevelThickness:r*.7,curveSegments:8});g.translate(0,0,-(sz-2*r)/2);return add(g,m,x,y,z);}
     function texture(draw,w=512,h=512){const c=document.createElement("canvas");c.width=w;c.height=h;const g=c.getContext("2d");draw(g,w,h);const t=new T.CanvasTexture(c);t.wrapS=T.RepeatWrapping;t.wrapT=T.RepeatWrapping;t.anisotropy=renderer.capabilities.getMaxAnisotropy();t.encoding=T.sRGBEncoding;return t;}
+    // SENSE_3D_MATERIALS_V1 — texture leggere, limitate alla scena 3D.
+    const woodMap=texture((g,w,h)=>{
+      g.fillStyle="#a77b56";g.fillRect(0,0,w,h);
+      for(let y=0;y<h;y+=5){g.strokeStyle="rgba(62,39,24,.10)";g.lineWidth=1;g.beginPath();g.moveTo(0,y);g.bezierCurveTo(w*.3,y+Math.sin(y*.06)*3,w*.7,y-Math.cos(y*.04)*3,w,y);g.stroke();}
+      for(let i=0;i<12;i++){const x=(i*83)%w,y=(i*47)%h;g.strokeStyle="rgba(65,39,22,.10)";g.beginPath();g.ellipse(x,y,15+(i%4)*5,3,0,0,Math.PI*2);g.stroke();}
+    },512,512);
+    woodMap.repeat.set(1.5,1.2);oak.map=woodMap;oak.bumpMap=woodMap;oak.bumpScale=.012;oakLight.map=woodMap;oakLight.bumpMap=woodMap;oakLight.bumpScale=.008;
+    const fabricMap=texture((g,w,h)=>{
+      g.fillStyle="#9c8e80";g.fillRect(0,0,w,h);
+      for(let y=0;y<h;y+=4){g.strokeStyle="rgba(255,255,255,.075)";g.beginPath();g.moveTo(0,y);g.lineTo(w,y);g.stroke();}
+      for(let x=0;x<w;x+=4){g.strokeStyle="rgba(45,37,31,.07)";g.beginPath();g.moveTo(x,0);g.lineTo(x,h);g.stroke();}
+    },256,256);
+    fabricMap.repeat.set(3,2);sofa.map=fabricMap;cushion.map=fabricMap;cushion2.map=fabricMap;sofa.bumpMap=fabricMap;cushion.bumpMap=fabricMap;sofa.bumpScale=.008;cushion.bumpScale=.006;
+    // Ombre morbide sotto gli arredi: non rappresentano dati dei sensori.
+    const shadowMap=texture((g,w,h)=>{
+      const grad=g.createRadialGradient(w/2,h/2,2,w/2,h/2,w*.48);
+      grad.addColorStop(0,"rgba(35,29,22,.22)");grad.addColorStop(.6,"rgba(35,29,22,.09)");grad.addColorStop(1,"rgba(35,29,22,0)");
+      g.fillStyle=grad;g.fillRect(0,0,w,h);
+    },256,256);
+    function softShadow(x,z,sx,sz){const m=new T.MeshBasicMaterial({map:shadowMap,transparent:true,depthWrite:false});const p=new T.Mesh(new T.PlaneGeometry(sx,sz),m);p.rotation.x=-Math.PI/2;p.position.set(x,.009,z);scene.add(p);}
     const floorTex=texture((g,w,h)=>{g.fillStyle="#c8c0b4";g.fillRect(0,0,w,h);for(let y=0;y<h;y+=128)for(let x=0;x<w;x+=128){g.fillStyle=(x/128+y/128)%2?"#d5cec3":"#cfc7bb";g.fillRect(x+2,y+2,124,124);g.strokeStyle="#b5ad9f";g.lineWidth=3;g.strokeRect(x+1,y+1,126,126);}});floorTex.repeat.set(2,2);const floor=new T.Mesh(new T.PlaneGeometry(8.5,6.8),new T.MeshStandardMaterial({map:floorTex,roughness:.86}));floor.rotation.x=-Math.PI/2;floor.position.y=-.035;floor.receiveShadow=true;scene.add(floor);
     // Room shell and baseboards.
     box(0,1.48,3.27,8.5,3,.16,cream,false);box(-4.22,1.48,0,.16,3,6.5,sideCream,false);box(0,.10,3.16,8.45,.2,.07,trim,false);box(-4.12,.10,0,.07,.2,6.4,trim,false);
@@ -132,7 +152,7 @@
     // Door, frame, panels and handle.
     rounded(3.05,1.12,3.145,1.18,2.22,.08,oakLight,.045);rounded(3.05,1.12,3.09,1.02,2.08,.07,oak,.04);rounded(3.05,1.45,3.045,.74,.88,.025,oakLight,.03);rounded(3.05,.55,3.045,.74,.75,.025,oakLight,.03);add(new T.SphereGeometry(.05,18,12),metal,3.44,1.02,3.01);
     // Woven rug on tile floor.
-    const rugTex=texture((g,w,h)=>{g.fillStyle="#bcb1a2";g.fillRect(0,0,w,h);for(let i=0;i<1800;i++){const x=(i*73)%w,y=(i*137)%h;g.fillStyle=i%2?"rgba(255,255,255,.1)":"rgba(91,77,63,.08)";g.fillRect(x,y,2,1);}g.strokeStyle="#d8cdbf";g.lineWidth=15;g.strokeRect(16,16,w-32,h-32);g.strokeStyle="#a89987";g.lineWidth=2;g.strokeRect(35,35,w-70,h-70);});const rug=new T.Mesh(new T.PlaneGeometry(4.35,3.25),new T.MeshStandardMaterial({map:rugTex,roughness:1,side:T.DoubleSide}));rug.rotation.x=-Math.PI/2;rug.position.set(-.05,.006,.25);rug.receiveShadow=true;scene.add(rug);
+    const rugTex=texture((g,w,h)=>{g.fillStyle="#bcb1a2";g.fillRect(0,0,w,h);for(let i=0;i<1800;i++){const x=(i*73)%w,y=(i*137)%h;g.fillStyle=i%2?"rgba(255,255,255,.1)":"rgba(91,77,63,.08)";g.fillRect(x,y,2,1);}g.strokeStyle="#d8cdbf";g.lineWidth=15;g.strokeRect(16,16,w-32,h-32);g.strokeStyle="#a89987";g.lineWidth=2;g.strokeRect(35,35,w-70,h-70);});const rug=new T.Mesh(new T.PlaneGeometry(4.35,3.25),new T.MeshStandardMaterial({map:rugTex,roughness:1,side:T.DoubleSide}));rug.rotation.x=-Math.PI/2;rug.position.set(-.05,.006,.25);rug.receiveShadow=true;scene.add(rug);softShadow(1.28,1.72,3.35,1.65);softShadow(-.05,.22,2.0,1.35);softShadow(-3.55,-.55,1.9,1.05);
     // Sofa: visible upholstered base, cushion, rounded armrests, pillows and feet.
     rounded(1.28,.39,1.72,2.72,.42,1.08,sofa,.12);rounded(1.28,.93,2.2,2.62,.88,.28,sofa,.12);rounded(-.0,.68,1.78,.28,.66,1.12,sofa,.1);rounded(2.56,.68,1.78,.28,.66,1.12,sofa,.1);rounded(.68,.65,1.56,1.12,.18,.78,cushion,.08);rounded(1.88,.65,1.56,1.12,.18,.78,cushion,.08);rounded(.45,1.08,2.015,.78,.58,.18,cushion2,.08);rounded(1.28,1.1,2.015,.78,.58,.18,cushion,.08);rounded(2.1,1.08,2.015,.78,.58,.18,cushion2,.08);const sofaLeg=mat(0x5a5147,.6);for(const x of[.18,2.38])for(const z of[1.3,2.1])add(new T.CylinderGeometry(.045,.06,.22,12),sofaLeg,x,.12,z);
     // Coffee table centered in front of sofa.
