@@ -2,6 +2,7 @@ const SYSTEM = `Sei SENSE Assistant, assistente informativo del progetto INDOOR 
 
 const allowedOrigins = new Set([
   "https://youssef673.github.io",
+  "https://indoor-eye-sense.vercel.app",
   "https://indoor-eye-sense-git-main-youssefelhachimi51-8502s-projects.vercel.app",
   "https://indoor-eye-sense-youssefelhachimi51-8502s-projects.vercel.app"
 ]);
