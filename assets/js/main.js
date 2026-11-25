@@ -37,7 +37,7 @@
   aiOpen?.addEventListener("click",()=>toggleSiteAi(aiPanel.hidden));aiClose?.addEventListener("click",()=>toggleSiteAi(false));
   function addSiteMessage(t,kind){const e=document.createElement("p");e.className=kind==="user"?"site-ai-user":"site-ai-bot";e.textContent=t;aiMessages.appendChild(e);aiMessages.scrollTop=aiMessages.scrollHeight;return e;}
   aiForm?.addEventListener("submit",async e=>{e.preventDefault();const q=aiInput.value.trim();if(!q)return;addSiteMessage(q,"user");aiInput.value="";const wait=addSiteMessage("Sto preparando la risposta…","bot");const payload=[...history,{role:"user",content:q}];const send=aiForm.querySelector('button[type="submit"]');if(send)send.disabled=true;
-    try{const r=await fetch("https://indoor-eye-sense-git-main-youssefelhachimi51-8502s-projects.vercel.app/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:payload})});const data=await r.json();if(!r.ok)throw new Error(data.error||"Servizio AI temporaneamente non disponibile.");wait.textContent=data.answer;history.push({role:"user",content:q},{role:"assistant",content:data.answer});}
+    try{const r=await fetch("https://indoor-eye-sense.vercel.app/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:payload})});const data=await r.json();if(!r.ok)throw new Error(data.error||"Servizio AI temporaneamente non disponibile.");wait.textContent=data.answer;history.push({role:"user",content:q},{role:"assistant",content:data.answer});}
     catch(err){wait.textContent=err.message||"Non riesco a raggiungere l'assistente. Riprova più tardi.";}
     finally{if(send)send.disabled=false;aiInput.focus();}
   });
