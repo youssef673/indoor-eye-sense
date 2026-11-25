@@ -507,34 +507,3 @@ html,body{min-height:100%;background:#f5f7fa}
  .profile-save-button,.profile-reset-button{width:100%;min-height:43px}
  .profile-link-card{padding:14px}
 }
-
-/* SENSE 3D and AI assistant refinement */
-.sense-scene-stage{background:linear-gradient(180deg,#e5ebe7,#f3f2ed 58%,#ded9ce)}
-.sense-scene-stage .scene3d{filter:saturate(.96) contrast(1.025)}
-.sense-ai-panel>header{min-height:62px}
-.sense-ai-header-actions{display:flex;align-items:center;gap:4px}
-.sense-ai-panel>header .sense-ai-header-actions button{width:34px;height:34px;display:grid;place-items:center;border:1px solid #ffffff24;border-radius:9px;font-size:20px}
-.sense-ai-panel>header .sense-ai-header-actions button:hover{background:#ffffff18}
-#sense-ai-status{display:flex;align-items:center;gap:6px}
-#sense-ai-status:before{content:"";width:6px;height:6px;border-radius:50%;background:#76d6ad}
-#sense-ai-status[data-state="busy"]:before{background:#f3c36b;box-shadow:0 0 0 4px #f3c36b22}
-#sense-ai-status[data-state="error"]:before{background:#f08a78}
-.sense-ai-prompts{display:flex;gap:6px;padding:9px 11px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid #edf1ef;background:#fbfdfc}
-.sense-ai-prompts::-webkit-scrollbar{display:none}
-.sense-ai-prompts button{flex:0 0 auto;padding:7px 10px;border:1px solid #dce9e4;border-radius:999px;background:#f4faf7;color:#326b60;font-size:9px;font-weight:750;cursor:pointer;white-space:nowrap}
-.sense-ai-prompts button:hover{background:#e8f6f0;border-color:#b9ddd0}
-.sense-ai-message{font-size:11px;max-width:92%;overflow-wrap:anywhere}
-.sense-ai-typing{position:relative;min-width:170px;color:#60796e}
-.sense-ai-typing:after{content:"";display:inline-block;width:16px;height:4px;margin-left:7px;border-radius:6px;background:linear-gradient(90deg,#0a9b8b 30%,#d7e8e1 30%);animation:senseTyping 1s linear infinite}
-@keyframes senseTyping{to{background-position:16px 0}}
-#sense-ai-form{align-items:center;background:#fff}
-#sense-ai-input{min-height:42px;font-size:12px}
-#sense-ai-input:disabled{opacity:.65;background:#f5f8f7}
-#sense-ai-form button{width:42px;height:42px;flex:0 0 42px;font-weight:800}
-#sense-ai-form button:disabled{opacity:.55;cursor:wait}
-@media(max-width:700px){
- .sense-ai-panel>header{min-height:58px}
- .sense-ai-prompts{padding:8px}
- .sense-ai-prompts button{font-size:9px;min-height:34px}
- .sense-ai-message{font-size:12px;line-height:1.55}
-}
