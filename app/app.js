@@ -9,7 +9,10 @@
     window.clearTimeout(toast.timer);
     toast.timer = window.setTimeout(() => status.classList.remove("is-visible"), 3200);
   };
-  function showView(name) {\n    const topTitle=document.querySelector(".topbar-title");\n    const pageHeading=document.querySelector(`[data-view="${name}"] h1`);\n    if(topTitle && pageHeading) topTitle.textContent=pageHeading.textContent;
+  function showView(name) {
+    const topTitle = document.querySelector(".topbar-title");
+    const pageHeading = document.querySelector(`[data-view="${name}"] h1`);
+    if (topTitle && pageHeading) topTitle.textContent = pageHeading.textContent;
     views.forEach((view) => view.classList.toggle("is-visible", view.dataset.view === name));
     navItems.forEach((item) => {
       const active = item.dataset.viewTarget === name;
