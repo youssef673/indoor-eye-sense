@@ -14,6 +14,7 @@
     navItems.forEach((item) => {
       const active = item.dataset.viewTarget === name;
       item.classList.toggle("is-active", active);
+      if (active && window.matchMedia("(max-width: 760px)").matches) item.scrollIntoView({behavior: "smooth", block: "nearest", inline: "center"});
       if (active) item.setAttribute("aria-current", "page");
       else item.removeAttribute("aria-current");
     });
